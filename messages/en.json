@@ -1,0 +1,213 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "services": "Services",
+    "gallery": "Gallery",
+    "materials": "Materials",
+    "blog": "Blog",
+    "contact": "Contact",
+    "getQuote": "Get a Quote"
+  },
+  "hero": {
+    "companyLabel": "EST. 2010 — WOOD & ALUMINUM STUDIO",
+    "titleLine1": "Crafted for the",
+    "titleLine2": "Life You Live",
+    "subtitle": "Bespoke furniture, timeless design. Every piece tells a story of skill, heritage, and care.",
+    "cta1": "EXPLORE COLLECTION",
+    "cta2": "VIEW OUR WORK"
+  },
+  "about": {
+    "label": "OUR STORY",
+    "title": "Built from the ground up in Addis.",
+    "year": "2010",
+    "description1": "Kassahun Wood and Aluminum Work was founded with a singular vision: to bridge the gap between artisanal woodworking and modern aluminum fabrication. What began as a small workshop has grown into a full-service interior craftsmanship studio, serving homes and businesses across Ethiopia.",
+    "description2": "Our team of skilled carpenters, metal fabricators, and interior designers work collaboratively to transform spaces — from custom furniture pieces to complete office fit-outs. We believe that great design lives at the intersection of warmth and precision.",
+    "stat1Number": "14+",
+    "stat1Label": "Years Experience",
+    "stat2Number": "500+",
+    "stat2Label": "Projects Completed",
+    "stat3Number": "50+",
+    "stat3Label": "Skilled Artisans",
+    "stat4Number": "4",
+    "stat4Label": "Countries Served",
+    "imageAlt": "Woodworking artisan in workshop"
+  },
+  "services": {
+    "label": "OUR SERVICES",
+    "title": "Three Pillars of Craft",
+    "subtitle": "One studio, three disciplines — united by an obsession with quality and detail.",
+    "furniture": {
+      "title": "Custom Furniture & Woodwork",
+      "label": "Custom",
+      "description": "Handcrafted furniture and woodwork — from dining tables and wardrobes to built-in cabinetry and decorative wood paneling.",
+      "features": ["Custom furniture design", "Built-in cabinetry", "Wood paneling & molding", "Restoration & refinishing"],
+      "link": "See our work →"
+    },
+    "aluminum": {
+      "title": "Aluminum Fabrication",
+      "label": "Aluminum",
+      "description": "Precision aluminum work for modern interiors and exteriors — windows, doors, railings, partitions, false ceilings.",
+      "features": ["Windows & sliding doors", "Railings & balustrades", "Partitions & dividers", "False ceilings & glass systems"],
+      "link": "See our work →"
+    },
+    "interior": {
+      "title": "Interior Design & Consulting",
+      "label": "Interior",
+      "description": "End-to-end interior design services — space planning, material sourcing, mood boards, and project management.",
+      "features": ["Space planning & layout", "Material & finish sourcing", "Mood boards & concepts", "Project management"],
+      "link": "See our work →"
+    }
+  },
+  "products": {
+    "label": "CATALOG",
+    "title": "Our Products",
+    "categories": ["All", "Furniture", "Aluminum", "Interior"],
+    "items": [
+      { "name": "Walnut Dining Table", "category": "Furniture", "material": "Wood", "price": "$$$" },
+      { "name": "Aluminum Sliding Window", "category": "Aluminum", "material": "Aluminum", "price": "$$" },
+      { "name": "Modern Living Room Set", "category": "Interior", "material": "Mixed", "price": "$$$$" },
+      { "name": "Glass Railing System", "category": "Aluminum", "material": "Aluminum/Glass", "price": "$$$" },
+      { "name": "Custom Kitchen Cabinets", "category": "Furniture", "material": "Wood", "price": "$$$$" },
+      { "name": "Office Partition Walls", "category": "Aluminum", "material": "Aluminum", "price": "$$" },
+      { "name": "Executive Desk", "category": "Furniture", "material": "Wood", "price": "$$$" },
+      { "name": "Bedroom Wardrobe", "category": "Furniture", "material": "Wood", "price": "$$$" }
+    ]
+  },
+  "gallery": {
+    "label": "PORTFOLIO",
+    "title": "Project Gallery",
+    "filters": ["All", "Wood", "Aluminum", "Interior Design"],
+    "projects": [
+      { "title": "Modern Villa Interior", "division": "Interior", "room": "Living Room" },
+      { "title": "Executive Office Fit-out", "division": "Aluminum", "room": "Office" },
+      { "title": "Custom Kitchen Design", "division": "Furniture", "room": "Kitchen" },
+      { "title": "Glass Facade Installation", "division": "Aluminum", "room": "Exterior" },
+      { "title": "Master Bedroom Suite", "division": "Interior", "room": "Bedroom" },
+      { "title": "Restaurant Wood Paneling", "division": "Furniture", "room": "Commercial" }
+    ]
+  },
+  "materials": {
+    "label": "EXPLORE",
+    "title": "Material Library",
+    "subtitle": "Browse our collection of wood species, finishes, and aluminum profiles to inspire your project.",
+    "items": [
+      { "name": "Walnut", "type": "Wood" },
+      { "name": "Oak", "type": "Wood" },
+      { "name": "Mahogany", "type": "Wood" },
+      { "name": "Teak", "type": "Wood" },
+      { "name": "Brushed Silver", "type": "Aluminum" },
+      { "name": "Matte Black", "type": "Aluminum" },
+      { "name": "Champagne Gold", "type": "Aluminum" },
+      { "name": "Bronze", "type": "Aluminum" }
+    ]
+  },
+  "beforeAfter": {
+    "label": "TRANSFORMATION",
+    "title": "Before & After",
+    "before": "Before",
+    "after": "After"
+  },
+  "testimonials": {
+    "label": "CLIENT TESTIMONIALS",
+    "title": "What Our Clients Say",
+    "items": [
+      {
+        "name": "Selamawit Tesfaye",
+        "role": "Homeowner",
+        "location": "Bole",
+        "text": "We handed Kassahun's team the keys to our entire ground floor. Three months later we have built-ins, a walnut kitchen island, and aluminum sliding doors that changed how the space feels entirely. Extraordinary quality."
+      },
+      {
+        "name": "W/ro Hanna",
+        "role": "Business Owner",
+        "location": "Merkato",
+        "text": "Our office renovation was completed on time and beyond our expectations. The aluminum partitions and glass doors gave our space a completely new identity."
+      },
+      {
+        "name": "Ato Dawit",
+        "role": "Architect",
+        "location": "Arat Kilo",
+        "text": "I regularly recommend Kassahun to my clients. Their attention to detail in both wood and metal work is unmatched in the industry."
+      }
+    ]
+  },
+  "quote": {
+    "label": "GET STARTED",
+    "title": "Request a Quote",
+    "subtitle": "Tell us about your project and we'll get back to you within 24 hours.",
+    "namePlaceholder": "Your Name",
+    "emailPlaceholder": "Email Address",
+    "phonePlaceholder": "Phone Number",
+    "serviceLabel": "Service Type",
+    "serviceOptions": {
+      "furniture": "Custom Furniture",
+      "aluminum": "Aluminum Fabrication",
+      "interior": "Interior Design",
+      "consulting": "Consulting"
+    },
+    "projectPlaceholder": "Describe your project...",
+    "submit": "Send Quote Request"
+  },
+  "faq": {
+    "label": "FAQ",
+    "title": "Frequently Asked Questions",
+    "items": [
+      {
+        "question": "How long does a typical project take?",
+        "answer": "Timeline depends on scope. A single furniture piece may take 2-4 weeks, while a full office fit-out can take 6-12 weeks. We provide detailed timelines during the consultation phase."
+      },
+      {
+        "question": "Do you work outside Addis Ababa?",
+        "answer": "Yes, we serve clients across Ethiopia. Travel and logistics costs are discussed during the project planning stage."
+      },
+      {
+        "question": "Can I choose my own materials?",
+        "answer": "Absolutely. We encourage clients to visit our material library and select finishes. Our consultants can also recommend materials based on your budget and lifestyle."
+      },
+      {
+        "question": "Do you offer warranty on your work?",
+        "answer": "All our work comes with a workmanship guarantee. Furniture has a 2-year warranty; aluminum installations carry a 5-year structural warranty."
+      }
+    ]
+  },
+  "contact": {
+    "label": "CONTACT",
+    "title": "Get In Touch",
+    "visitUs": "Visit Us",
+    "address": "Bole Road, Addis Ababa, Ethiopia",
+    "callUs": "Call Us",
+    "phone": "+251 91 234 5678",
+    "emailUs": "Email Us",
+    "email": "info@kassahunworkshop.com",
+    "workingHours": "Working Hours",
+    "hours": "Mon – Sat: 8:00 AM – 6:00 PM",
+    "namePlaceholder": "Your Name",
+    "emailPlaceholder": "Email Address",
+    "subjectPlaceholder": "Subject",
+    "messagePlaceholder": "Message",
+    "submit": "Send Message"
+  },
+  "footer": {
+    "description": "Full-service interior craftsmanship studio — custom furniture, aluminum fabrication, and design consulting.",
+    "socials": ["Facebook", "Instagram", "Telegram"],
+    "servicesTitle": "Services",
+    "services": ["Custom Furniture", "Aluminum Fabrication", "Interior Design", "Material Consulting"],
+    "quickLinksTitle": "Quick Links",
+    "quickLinks": ["About Us", "Project Gallery", "Material Library", "FAQ"],
+    "newsletterTitle": "Newsletter",
+    "newsletterText": "Get project inspiration and updates.",
+    "newsletterPlaceholder": "Your email",
+    "newsletterButton": "Join",
+    "copyright": "© {year} Kassahun Wood and Aluminum Work. All rights reserved.",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service"
+  },
+  "whatsapp": {
+    "title": "Chat on WhatsApp"
+  },
+  "language": {
+    "en": "English",
+    "am": "Amharic"
+  }
+}

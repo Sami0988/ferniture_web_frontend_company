@@ -1,0 +1,112 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply font-body bg-ivory text-graphite dark:bg-graphite-900 dark:text-aluminum-200 antialiased;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading;
+  }
+}
+
+@layer components {
+  .section-padding {
+    @apply px-4 sm:px-6 lg:px-8 xl:px-16 py-16 md:py-24;
+  }
+
+  .gold-underline {
+    @apply relative;
+  }
+  .gold-underline::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-0 h-0.5 bg-gold transition-all duration-300;
+  }
+  .gold-underline:hover::after {
+    @apply w-full;
+  }
+
+  .service-pillar-label {
+    @apply text-xs uppercase tracking-[0.25em] font-body font-medium;
+  }
+
+  .split-divider {
+    @apply w-full h-24 relative overflow-hidden;
+  }
+
+  .skeleton {
+    @apply animate-pulse bg-aluminum-200 rounded;
+  }
+
+  .filter-chip {
+    @apply px-4 py-2 rounded-full text-sm font-medium border border-aluminum-300 
+           hover:border-gold hover:text-gold transition-all duration-200 cursor-pointer
+           bg-white/80 dark:bg-graphite-800/80 dark:border-graphite-600 dark:text-aluminum-300
+           dark:hover:border-gold dark:hover:text-gold backdrop-blur-sm;
+  }
+  .filter-chip.active {
+    @apply bg-gold text-white border-gold;
+  }
+
+  .material-swatch {
+    @apply relative overflow-hidden rounded-lg cursor-pointer;
+  }
+  .material-swatch::after {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-t from-graphite/80 via-transparent to-transparent 
+           opacity-0 group-hover:opacity-100 transition-opacity duration-300;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  @apply bg-ivory dark:bg-graphite-900;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-aluminum-400 rounded-full;
+}
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-walnut;
+}
+
+/* Before/After slider */
+.before-after-container {
+  @apply relative overflow-hidden select-none;
+}
+.before-after-container img {
+  @apply pointer-events-none;
+}
+
+/* Masonry grid */
+.masonry-grid {
+  @apply columns-1 sm:columns-2 lg:columns-3 gap-4;
+}
+.masonry-grid > * {
+  @apply break-inside-avoid mb-4;
+}
+
+/* Hero fade-in animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out forwards;
+  opacity: 0;
+}
