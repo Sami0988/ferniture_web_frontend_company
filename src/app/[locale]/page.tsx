@@ -31,7 +31,7 @@ function HeroSection({ t }: { t: any }) {
     <section className="relative h-screen min-h-[600px] flex items-center justify-center overflow-hidden bg-graphite">
       <div className="absolute inset-0 z-0">
         <Image
-          src="/image/PXL_20250621_125520405.jpg"
+          src="/image/PXL_20250920_145418581.jpg"
           alt="Kassahun workshop interior"
           fill
           className="object-cover"
