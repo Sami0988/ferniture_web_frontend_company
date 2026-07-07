@@ -1,6 +1,7 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
+import NewsletterForm from './NewsletterForm';
 
 export default function Footer() {
   const t = useTranslations('footer');
@@ -57,16 +58,7 @@ export default function Footer() {
             <div>
               <h4 className="font-heading text-lg text-white mb-4">{t('newsletterTitle')}</h4>
               <p className="text-sm mb-4">{t('newsletterText')}</p>
-              <form className="flex gap-2">
-                <input
-                  type="email"
-                  placeholder={t('newsletterPlaceholder')}
-                  className="flex-1 px-4 py-2 bg-graphite-700 border border-graphite-600 rounded-lg text-white placeholder-aluminum-500 text-sm focus:outline-none focus:border-gold transition-colors"
-                />
-                <button type="submit" className="px-4 py-2 bg-gold hover:bg-gold-600 text-white text-sm font-medium rounded-lg transition-colors">
-                  {t('newsletterButton')}
-                </button>
-              </form>
+              <NewsletterForm />
             </div>
           </div>
 

@@ -110,3 +110,27 @@
   animation: fadeInUp 0.6s ease-out forwards;
   opacity: 0;
 }
+
+/* Hide default cursor on desktop when custom cursor is active */
+@media (pointer: fine) {
+  body {
+    cursor: none;
+  }
+  a, button, [role="button"], input, textarea, select, .filter-chip, details, [role="slider"] {
+    cursor: none;
+  }
+}
+
+/* Pulse animation for WhatsApp button */
+@keyframes pulseSlow {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 12px rgba(37, 211, 102, 0);
+  }
+}
+
+.animate-pulse-slow {
+  animation: pulseSlow 2s ease-in-out infinite;
+}
