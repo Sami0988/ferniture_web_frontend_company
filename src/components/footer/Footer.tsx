@@ -60,10 +60,10 @@ export default function Footer() {
           </div>
 
           <div className="border-t border-graphite-600 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
-            <p className="text-sm text-aluminum-500">
+            <p className="text-sm text-aluminum-300">
               © {year} Kassahun Wood and Aluminum Work. All rights reserved.
             </p>
-            <div className="flex gap-6 text-sm text-aluminum-500">
+            <div className="flex gap-6 text-sm text-aluminum-300">
               <a href="#" className="hover:text-gold transition-colors">{t('privacy')}</a>
               <a href="#" className="hover:text-gold transition-colors">{t('terms')}</a>
             </div>

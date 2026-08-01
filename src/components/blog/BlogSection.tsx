@@ -4,33 +4,7 @@ import Image from 'next/image';
 import { Link } from '@/i18n/navigation';
 import { Reveal, StaggerContainer, StaggerItem } from '@/components/ui/Reveal';
 import { Calendar, ArrowRight } from 'lucide-react';
-
-const blogPosts = [
-  {
-    id: 1,
-    title: 'Choosing the Right Wood for Your Custom Furniture',
-    excerpt: 'A guide to understanding wood species, grain patterns, and durability for your next project.',
-    date: 'Mar 15, 2026',
-    category: 'Materials',
-    image: '/image/PXL_20241012_101314116.jpg',
-  },
-  {
-    id: 2,
-    title: 'Aluminum vs. Steel: Which is Better for Windows?',
-    excerpt: 'Comparing durability, cost, and aesthetics for modern window frames in Ethiopian homes.',
-    date: 'Feb 28, 2026',
-    category: 'Aluminum',
-    image: '/image/PXL_20250426_180358812.jpg',
-  },
-  {
-    id: 3,
-    title: '5 Interior Design Trends for Addis Ababa Homes in 2026',
-    excerpt: 'From minimalist aesthetics to warm earth tones, discover what is shaping interiors this year.',
-    date: 'Jan 10, 2026',
-    category: 'Interior',
-    image: '/image/PXL_20250621_125518743.jpg',
-  },
-];
+import { blogPosts } from '@/lib/data/blogPosts';
 
 export default function BlogSection() {
   return (
@@ -60,7 +34,7 @@ export default function BlogSection() {
                   </div>
                   <h3 className="font-heading text-xl text-graphite dark:text-white mb-3 group-hover:text-gold transition-colors">{post.title}</h3>
                   <p className="text-graphite-400 dark:text-aluminum-400 text-sm leading-relaxed mb-4 flex-1">{post.excerpt}</p>
-                  <Link href="/blog" className="text-gold font-medium text-sm flex items-center gap-1 group-hover:gap-2 transition-all">
+                  <Link href="/blog" className="text-gold font-medium text-sm flex items-center gap-1 group-hover:gap-2 transition-all" aria-label={`Read more about ${post.title}`}>
                     Read More <ArrowRight size={14} />
                   </Link>
                 </div>

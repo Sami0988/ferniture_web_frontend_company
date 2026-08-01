@@ -80,6 +80,7 @@ export default function QuoteSection() {
                   value={formData.name}
                   onChange={handleChange}
                   placeholder={t('namePlaceholder')}
+                  aria-label={t('namePlaceholder')}
                   className={`w-full px-4 py-3 bg-white/10 border rounded-lg text-white placeholder-white/50 focus:outline-none focus:border-gold transition-colors ${errors.name ? 'border-red-400' : 'border-white/20'}`}
                 />
                 {errors.name && <p className="text-red-300 text-xs mt-1 flex items-center gap-1"><AlertCircle size={12} />{errors.name}</p>}
@@ -91,6 +92,7 @@ export default function QuoteSection() {
                   value={formData.email}
                   onChange={handleChange}
                   placeholder={t('emailPlaceholder')}
+                  aria-label={t('emailPlaceholder')}
                   className={`w-full px-4 py-3 bg-white/10 border rounded-lg text-white placeholder-white/50 focus:outline-none focus:border-gold transition-colors ${errors.email ? 'border-red-400' : 'border-white/20'}`}
                 />
                 {errors.email && <p className="text-red-300 text-xs mt-1 flex items-center gap-1"><AlertCircle size={12} />{errors.email}</p>}
@@ -104,6 +106,7 @@ export default function QuoteSection() {
                   value={formData.phone}
                   onChange={handleChange}
                   placeholder={t('phonePlaceholder')}
+                  aria-label={t('phonePlaceholder')}
                   className={`w-full px-4 py-3 bg-white/10 border rounded-lg text-white placeholder-white/50 focus:outline-none focus:border-gold transition-colors ${errors.phone ? 'border-red-400' : 'border-white/20'}`}
                 />
                 {errors.phone && <p className="text-red-300 text-xs mt-1 flex items-center gap-1"><AlertCircle size={12} />{errors.phone}</p>}
@@ -113,6 +116,7 @@ export default function QuoteSection() {
                   name="service"
                   value={formData.service}
                   onChange={handleChange}
+                  aria-label={t('serviceLabel')}
                   className={`w-full px-4 py-3 bg-white/10 border rounded-lg focus:outline-none focus:border-gold transition-colors ${errors.service ? 'border-red-400 text-white/50' : 'border-white/20 text-white/70'}`}
                 >
                   <option value="" className="bg-graphite text-white">{t('serviceLabel')}</option>
@@ -131,6 +135,7 @@ export default function QuoteSection() {
                 onChange={handleChange}
                 rows={4}
                 placeholder={t('projectPlaceholder')}
+                aria-label={t('projectPlaceholder')}
                 className={`w-full px-4 py-3 bg-white/10 border rounded-lg text-white placeholder-white/50 focus:outline-none focus:border-gold transition-colors resize-none ${errors.project ? 'border-red-400' : 'border-white/20'}`}
               />
               {errors.project && <p className="text-red-300 text-xs mt-1 flex items-center gap-1"><AlertCircle size={12} />{errors.project}</p>}

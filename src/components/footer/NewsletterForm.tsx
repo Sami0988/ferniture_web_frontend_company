@@ -49,8 +49,9 @@ export default function NewsletterForm() {
           type="submit"
           disabled={status === 'sending'}
           className="px-4 py-2 bg-gold hover:bg-gold-600 text-white text-sm font-medium rounded-lg transition-colors disabled:opacity-50"
+          aria-label={status === 'success' ? 'Subscribed successfully' : undefined}
         >
-          {status === 'sending' ? '...' : status === 'success' ? <CheckCircle size={16} /> : t('newsletterButton')}
+          {status === 'sending' ? '...' : status === 'success' ? <><CheckCircle size={16} /> <span className="sr-only">Subscribed</span></> : t('newsletterButton')}
         </button>
       </div>
       {error && <p className="text-red-400 text-xs flex items-center gap-1"><AlertCircle size={10} />{error}</p>}

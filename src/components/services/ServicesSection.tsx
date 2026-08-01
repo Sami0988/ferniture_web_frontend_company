@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/navigation';
 import { Reveal, StaggerContainer, StaggerItem } from '@/components/ui/Reveal';
+import { services } from '@/lib/data/services';
 
 export default function ServicesSection() {
   const t = useTranslations('services');
@@ -19,12 +20,6 @@ export default function ServicesSection() {
     aluminum: 'bg-aluminum',
     gold: 'bg-gold',
   };
-
-  const services = [
-    { key: 'furniture', image: '/image/PXL_20241012_101314116.jpg', color: 'walnut' },
-    { key: 'aluminum', image: '/image/PXL_20241012_102026855.jpg', color: 'aluminum' },
-    { key: 'interior', image: '/image/PXL_20241219_104255306.jpg', color: 'gold' },
-  ];
 
   return (
     <section id="services" className="section-padding bg-graphite dark:bg-graphite-950">

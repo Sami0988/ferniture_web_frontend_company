@@ -208,8 +208,8 @@ export default function GallerySection() {
               )}
               <div className="absolute bottom-6 left-0 right-0 text-center text-white z-10">
                 <p className="font-heading text-xl mb-1">{projects[lightboxIndex].title}</p>
-                <p className="text-sm text-white/60">{projects[lightboxIndex].division}</p>
-                <p className="text-xs text-white/40 mt-2">{lightboxIndex + 1} / {projects.length}</p>
+                <p className="text-sm text-white/80">{projects[lightboxIndex].division}</p>
+                <p className="text-xs text-white/70 mt-2">{lightboxIndex + 1} / {projects.length}</p>
               </div>
             </div>
           </div>

@@ -66,7 +66,7 @@ export default function ContactSection() {
                   <MapPin className="text-walnut" size={20} />
                 </div>
                 <div>
-                  <h4 className="font-heading text-xl text-graphite dark:text-white mb-1">{t('visitUs')}</h4>
+                  <h3 className="font-heading text-xl text-graphite dark:text-white mb-1">{t('visitUs')}</h3>
                   <p className="text-graphite-400 dark:text-aluminum-400">{t('address')}</p>
                 </div>
               </div>
@@ -75,7 +75,7 @@ export default function ContactSection() {
                   <Phone className="text-walnut" size={20} />
                 </div>
                 <div>
-                  <h4 className="font-heading text-xl text-graphite dark:text-white mb-1">{t('callUs')}</h4>
+                  <h3 className="font-heading text-xl text-graphite dark:text-white mb-1">{t('callUs')}</h3>
                   <a href={`tel:${t('phone').replace(/\s/g, '')}`} className="text-graphite-400 dark:text-aluminum-400 hover:text-walnut transition-colors">{t('phone')}</a>
                   <a href={`tel:${t('phone2').replace(/\s/g, '')}`} className="text-graphite-400 dark:text-aluminum-400 hover:text-walnut transition-colors">{t('phone2')}</a>
                 </div>
@@ -85,7 +85,7 @@ export default function ContactSection() {
                   <Mail className="text-walnut" size={20} />
                 </div>
                 <div>
-                  <h4 className="font-heading text-xl text-graphite dark:text-white mb-1">{t('emailUs')}</h4>
+                  <h3 className="font-heading text-xl text-graphite dark:text-white mb-1">{t('emailUs')}</h3>
                   <a href={`mailto:${t('email')}`} className="text-graphite-400 dark:text-aluminum-400 hover:text-walnut transition-colors">{t('email')}</a>
                 </div>
               </div>
@@ -94,7 +94,7 @@ export default function ContactSection() {
                   <Clock className="text-walnut" size={20} />
                 </div>
                 <div>
-                  <h4 className="font-heading text-xl text-graphite dark:text-white mb-1">{t('workingHours')}</h4>
+                  <h3 className="font-heading text-xl text-graphite dark:text-white mb-1">{t('workingHours')}</h3>
                   <p className="text-graphite-400 dark:text-aluminum-400">{t('hours')}</p>
                 </div>
               </div>
@@ -119,6 +119,7 @@ export default function ContactSection() {
                   value={formData.name}
                   onChange={handleChange}
                   placeholder={t('namePlaceholder')}
+                  aria-label={t('namePlaceholder')}
                   className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:border-gold transition-colors dark:bg-graphite-700 dark:text-white ${errors.name ? 'border-red-400' : 'border-aluminum-200 dark:border-graphite-600'}`}
                 />
                 {errors.name && <p className="text-red-500 text-xs mt-1 flex items-center gap-1"><AlertCircle size={12} />{errors.name}</p>}
@@ -130,6 +131,7 @@ export default function ContactSection() {
                   value={formData.email}
                   onChange={handleChange}
                   placeholder={t('emailPlaceholder')}
+                  aria-label={t('emailPlaceholder')}
                   className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:border-gold transition-colors dark:bg-graphite-700 dark:text-white ${errors.email ? 'border-red-400' : 'border-aluminum-200 dark:border-graphite-600'}`}
                 />
                 {errors.email && <p className="text-red-500 text-xs mt-1 flex items-center gap-1"><AlertCircle size={12} />{errors.email}</p>}
@@ -141,6 +143,7 @@ export default function ContactSection() {
                   value={formData.subject}
                   onChange={handleChange}
                   placeholder={t('subjectPlaceholder')}
+                  aria-label={t('subjectPlaceholder')}
                   className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:border-gold transition-colors dark:bg-graphite-700 dark:text-white ${errors.subject ? 'border-red-400' : 'border-aluminum-200 dark:border-graphite-600'}`}
                 />
                 {errors.subject && <p className="text-red-500 text-xs mt-1 flex items-center gap-1"><AlertCircle size={12} />{errors.subject}</p>}
@@ -152,6 +155,7 @@ export default function ContactSection() {
                   onChange={handleChange}
                   rows={4}
                   placeholder={t('messagePlaceholder')}
+                  aria-label={t('messagePlaceholder')}
                   className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:border-gold transition-colors dark:bg-graphite-700 dark:text-white resize-none ${errors.message ? 'border-red-400' : 'border-aluminum-200 dark:border-graphite-600'}`}
                 />
                 {errors.message && <p className="text-red-500 text-xs mt-1 flex items-center gap-1"><AlertCircle size={12} />{errors.message}</p>}

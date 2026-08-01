@@ -73,7 +73,7 @@ export default function ProductsSection() {
                     </div>
                     <div className="p-4">
                       <p className="service-pillar-label text-aluminum-500 text-[10px] mb-1">{p.category}</p>
-                      <h4 className="font-heading text-lg text-graphite dark:text-white mb-1">{p.name}</h4>
+                      <h3 className="font-heading text-lg text-graphite dark:text-white mb-1">{p.name}</h3>
                       <p className="text-sm text-graphite-400 dark:text-aluminum-400">{p.material} · ETB {p.price.toLocaleString()}</p>
                     </div>
                   </div>

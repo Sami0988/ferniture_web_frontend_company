@@ -79,6 +79,7 @@ export default async function LocaleLayout({
     <html lang={locale} suppressHydrationWarning className={`${playfair.variable} ${inter.variable}`}>
       <head>
         <link rel="icon" href="/image/photo_5944895518842490494_x%20(1).jpg" type="image/jpeg" />
+        <meta name="description" content="Kassahun Tesegaye — custom furniture, aluminum fabrication, and interior design in Addis Ababa, Ethiopia. 20+ years of craftsmanship. Get a free quote today." />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

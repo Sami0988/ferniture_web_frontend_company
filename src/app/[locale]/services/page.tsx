@@ -4,12 +4,7 @@ import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 import { useRouter, usePathname } from '@/i18n/navigation';
 import { Reveal, StaggerContainer, StaggerItem } from '@/components/ui/Reveal';
-
-const services = [
-  { key: 'furniture', image: '/image/PXL_20241012_101314116.jpg', color: 'walnut' },
-  { key: 'aluminum', image: '/image/PXL_20241012_102026855.jpg', color: 'aluminum' },
-  { key: 'interior', image: '/image/PXL_20241219_104255306.jpg', color: 'gold' },
-];
+import { services } from '@/lib/data/services';
 
 const colorMap: Record<string, string> = {
   walnut: 'text-walnut',

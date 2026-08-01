@@ -105,7 +105,7 @@ export default function Navbar() {
               className={`p-2 rounded-lg transition-colors duration-200 ${
                 scrolled ? 'text-graphite dark:text-aluminum-200 hover:bg-aluminum-100 dark:hover:bg-graphite-700' : 'text-white/80 hover:bg-white/10'
               }`}
-              title="Select Language"
+              aria-label="Select Language"
             >
               <Globe size={18} />
             </button>
@@ -145,7 +145,7 @@ export default function Navbar() {
             className={`p-2 rounded-lg transition-colors duration-200 ${
               scrolled ? 'text-graphite dark:text-aluminum-200 hover:bg-aluminum-100 dark:hover:bg-graphite-700' : 'text-white/80 hover:bg-white/10'
             }`}
-            title={darkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+            aria-label={darkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
           >
             {darkMode ? <Sun size={18} /> : <Moon size={18} />}
           </button>
@@ -166,6 +166,7 @@ export default function Navbar() {
             className={`lg:hidden p-2 rounded-lg transition-colors duration-200 ${
               scrolled ? 'text-graphite dark:text-white' : 'text-white'
             }`}
+            aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
           >
             {mobileOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -221,6 +222,7 @@ export default function Navbar() {
               <button
                 onClick={toggleDark}
                 className="p-2 rounded-lg bg-aluminum-100 dark:bg-graphite-700 text-graphite dark:text-aluminum-200"
+                aria-label={darkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
               >
                 {darkMode ? <Sun size={18} /> : <Moon size={18} />}
               </button>
