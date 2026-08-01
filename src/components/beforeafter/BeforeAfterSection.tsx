@@ -58,7 +58,7 @@ export default function BeforeAfterSection() {
   }, [isDragging, updateSliderPosition]);
 
   return (
-    <section className="section-padding bg-graphite dark:bg-graphite-950">
+    <section id="beforeafter" className="section-padding bg-graphite dark:bg-graphite-950">
       <div className="max-w-7xl mx-auto">
         <Reveal>
           <div className="text-center mb-12">
@@ -69,7 +69,7 @@ export default function BeforeAfterSection() {
         <Reveal>
           <div
             ref={containerRef}
-            className="before-after-container relative max-w-4xl mx-auto aspect-video rounded-2xl overflow-hidden cursor-ew-resize"
+            className="before-after-container relative max-w-6xl mx-auto aspect-video rounded-2xl overflow-hidden cursor-ew-resize"
             onMouseDown={handleMouseDown}
             onTouchStart={handleTouchStart}
             role="slider"
@@ -84,13 +84,13 @@ export default function BeforeAfterSection() {
             }}
           >
             <div className="absolute inset-0">
-              <Image src="/image/PXL_20250920_142303050.jpg" alt="Room after renovation" fill className="object-cover" />
+              <Image src="/image/After.jpg" alt="Room after renovation" fill sizes="(max-width: 768px) 100vw, 75vw" className="object-cover" />
             </div>
             <div
               className="absolute inset-0"
               style={{ clipPath: `inset(0 ${100 - sliderPos}% 0 0)` }}
             >
-              <Image src="/image/PXL_20241012_103243005.jpg" alt="Room before renovation" fill className="object-cover" />
+              <Image src="/image/before.jpg" alt="Room before renovation" fill sizes="(max-width: 768px) 100vw, 75vw" className="object-cover" />
             </div>
             <div className="absolute top-4 left-4 bg-graphite/70 px-3 py-1 rounded text-white text-sm z-10">{t('before')}</div>
             <div className="absolute top-4 right-4 bg-gold/90 px-3 py-1 rounded text-white text-sm z-10">{t('after')}</div>
@@ -100,7 +100,7 @@ export default function BeforeAfterSection() {
             >
               <div className="w-10 h-10 bg-gold rounded-full flex items-center justify-center shadow-lg pointer-events-none">
                 <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 9l4-4 4 4m0 6l-4 4-4-4" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16l-4-4m0 0l4-4m-4 4h18M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
               </div>
             </div>

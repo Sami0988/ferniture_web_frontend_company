@@ -2,8 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700&family=Inter:wght@300;400;500;600;700&display=swap');
-
 @layer base {
   html {
     scroll-behavior: smooth;
@@ -111,15 +109,6 @@
   opacity: 0;
 }
 
-/* Hide default cursor on desktop when custom cursor is active */
-@media (pointer: fine) {
-  body {
-    cursor: none;
-  }
-  a, button, [role="button"], input, textarea, select, .filter-chip, details, [role="slider"] {
-    cursor: none;
-  }
-}
 
 /* Pulse animation for WhatsApp button */
 @keyframes pulseSlow {
@@ -133,4 +122,27 @@
 
 .animate-pulse-slow {
   animation: pulseSlow 2s ease-in-out infinite;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .animate-fade-in-up {
+    opacity: 1;
+    animation: none;
+  }
+  .animate-pulse-slow {
+    animation: none;
+  }
+  .animate-bounce {
+    animation: none;
+  }
+  .animate-pulse {
+    animation: none;
+  }
 }

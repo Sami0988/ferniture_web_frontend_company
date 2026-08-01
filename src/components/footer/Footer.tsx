@@ -26,11 +26,8 @@ export default function Footer() {
                 {t('description')}
               </p>
               <div className="flex gap-4">
-                {t.raw('socials').map((s: string) => (
-                  <a key={s} href="#" className="text-aluminum-400 hover:text-gold transition-colors text-sm">
-                    {s}
-                  </a>
-                ))}
+                <a href="https://wa.me/251994437585" target="_blank" rel="noopener noreferrer" className="text-aluminum-400 hover:text-gold transition-colors text-sm">WhatsApp</a>
+                <a href="https://t.me/251994437585" target="_blank" rel="noopener noreferrer" className="text-aluminum-400 hover:text-gold transition-colors text-sm">Telegram</a>
               </div>
             </div>
 

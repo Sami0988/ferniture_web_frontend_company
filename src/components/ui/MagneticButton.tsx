@@ -8,14 +8,13 @@ interface MagneticButtonProps {
   className?: string;
   strength?: number;
   onClick?: () => void;
-  type?: 'button' | 'submit';
 }
 
-export default function MagneticButton({ children, className = '', strength = 0.3, onClick, type = 'button' }: MagneticButtonProps) {
-  const ref = useRef<HTMLButtonElement>(null);
+export default function MagneticButton({ children, className = '', strength = 0.3, onClick }: MagneticButtonProps) {
+  const ref = useRef<HTMLDivElement>(null);
   const [position, setPosition] = useState({ x: 0, y: 0 });
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!ref.current) return;
     const rect = ref.current.getBoundingClientRect();
     const x = e.clientX - rect.left - rect.width / 2;
@@ -28,18 +27,17 @@ export default function MagneticButton({ children, className = '', strength = 0.
   };
 
   return (
-    <motion.button
+    <motion.div
       ref={ref}
-      type={type}
       className={className}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       onClick={onClick}
       animate={{ x: position.x, y: position.y }}
       transition={{ type: 'spring', stiffness: 150, damping: 15, mass: 0.1 }}
-      whileTap={{ scale: 0.97 }}
+      role="presentation"
     >
       {children}
-    </motion.button>
+    </motion.div>
   );
 }

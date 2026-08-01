@@ -2,7 +2,6 @@
 
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
-import TextScramble from '@/components/ui/TextScramble';
 import MagneticButton from '@/components/ui/MagneticButton';
 import { motion, useMotionValue, useSpring } from 'framer-motion';
 
@@ -59,8 +58,8 @@ export default function HeroSection() {
           {t('companyLabel')}
         </p>
         <h1 className="font-heading text-5xl md:text-7xl lg:text-8xl font-bold mb-6 leading-[1.1] animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
-          <TextScramble text={t('titleLine1')} delay={300} />{' '}
-          <span className="text-gold"><TextScramble text={t('titleLine2')} delay={600} /></span>
+          {t('titleLine1')}{' '}
+          <span className="text-gold">{t('titleLine2')}</span>
         </h1>
         <p className="text-lg md:text-xl text-aluminum-200 max-w-2xl mx-auto mb-10 leading-relaxed animate-fade-in-up" style={{ animationDelay: '0.5s' }}>
           {t('subtitle')}

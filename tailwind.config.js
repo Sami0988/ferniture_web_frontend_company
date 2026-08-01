@@ -72,8 +72,8 @@ module.exports = {
         },
       },
       fontFamily: {
-        heading: ['Playfair Display', 'serif'],
-        body: ['Inter', 'sans-serif'],
+        heading: ['var(--font-heading)', 'serif'],
+        body: ['var(--font-body)', 'sans-serif'],
       },
       backgroundImage: {
         'wood-grain': "url('/textures/wood-grain.jpg')",

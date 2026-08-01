@@ -2,15 +2,28 @@
 
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
+import { Link } from '@/i18n/navigation';
 import { Reveal, StaggerContainer, StaggerItem } from '@/components/ui/Reveal';
 
 export default function ServicesSection() {
   const t = useTranslations('services');
 
+  const colorMap: Record<string, string> = {
+    walnut: 'text-walnut',
+    aluminum: 'text-aluminum',
+    gold: 'text-gold',
+  };
+
+  const bgColorMap: Record<string, string> = {
+    walnut: 'bg-walnut',
+    aluminum: 'bg-aluminum',
+    gold: 'bg-gold',
+  };
+
   const services = [
     { key: 'furniture', image: '/image/PXL_20241012_101314116.jpg', color: 'walnut' },
     { key: 'aluminum', image: '/image/PXL_20241012_102026855.jpg', color: 'aluminum' },
-    { key: 'interior', image: '/image/PXL_20241105_082347356.MP.jpg', color: 'gold' },
+    { key: 'interior', image: '/image/PXL_20241219_104255306.jpg', color: 'gold' },
   ];
 
   return (
@@ -28,22 +41,22 @@ export default function ServicesSection() {
             <StaggerItem key={s.key}>
               <div className="group relative rounded-2xl bg-graphite-800 dark:bg-graphite-800/50 border border-graphite-600 dark:border-graphite-700 hover:border-gold/30 transition-all duration-300 hover:-translate-y-1 h-full overflow-hidden">
                 <div className="aspect-video relative overflow-hidden">
-                  <Image src={s.image} alt={t(`${s.key}.title`)} fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
+                  <Image src={s.image} alt={t(`${s.key}.title`)} fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover group-hover:scale-105 transition-transform duration-500" />
                   <div className="absolute inset-0 bg-gradient-to-t from-graphite-800 via-transparent to-transparent" />
                 </div>
                 <div className="p-8">
-                  <p className={`service-pillar-label text-${s.color} mb-3`}>{t(`${s.key}.label`)}</p>
+                  <p className={`service-pillar-label ${colorMap[s.color]} mb-3`}>{t(`${s.key}.label`)}</p>
                   <h3 className="font-heading text-2xl text-white mb-4">{t(`${s.key}.title`)}</h3>
                   <p className="text-aluminum-400 text-sm leading-relaxed mb-6">{t(`${s.key}.description`)}</p>
                   <ul className="space-y-2 mb-8">
                     {t.raw(`${s.key}.features`).map((f: string) => (
                       <li key={f} className="flex items-center gap-2 text-sm text-aluminum-300">
-                        <div className={`w-1.5 h-1.5 rounded-full bg-${s.color}`} />
+                        <div className={`w-1.5 h-1.5 rounded-full ${bgColorMap[s.color]}`} />
                         {f}
                       </li>
                     ))}
                   </ul>
-                  <a href="#gallery" className="text-gold font-medium text-sm hover:underline">{t(`${s.key}.link`)}</a>
+                  <Link href="/services" className="text-gold font-medium text-sm hover:underline">{t(`${s.key}.link`)}</Link>
                 </div>
               </div>
             </StaggerItem>

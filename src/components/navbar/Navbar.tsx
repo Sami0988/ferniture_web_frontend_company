@@ -5,6 +5,7 @@ import { useTranslations } from 'next-intl';
 import { useRouter, usePathname } from '@/i18n/navigation';
 import { useLocale } from 'next-intl';
 import { Menu, X, Sun, Moon, Globe } from 'lucide-react';
+import Image from 'next/image';
 
 export default function Navbar() {
   const t = useTranslations('nav');
@@ -72,11 +73,14 @@ export default function Navbar() {
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-        <a href="#" className="flex items-center gap-2">
-          <div className={`font-heading text-xl font-bold ${scrolled ? 'text-graphite dark:text-white' : 'text-white'} transition-colors duration-300`}>
-            Kassahun
-          </div>
-          <div className="w-8 h-0.5 bg-gold transition-colors duration-300" />
+        <a href="#" className="flex items-center">
+          <Image
+            src="/image/photo_5944895518842490494_x (1).jpg"
+            alt="Kassahun Logo"
+            width={50}
+            height={50}
+            className="rounded-lg"
+          />
         </a>
 
         <nav className="hidden lg:flex items-center gap-8">

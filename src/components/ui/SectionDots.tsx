@@ -10,6 +10,8 @@ const sections = [
   { id: 'products', label: 'Products' },
   { id: 'gallery', label: 'Gallery' },
   { id: 'materials', label: 'Materials' },
+  { id: 'beforeafter', label: 'Before/After' },
+  { id: 'testimonials', label: 'Testimonials' },
   { id: 'quote', label: 'Quote' },
   { id: 'faq', label: 'FAQ' },
   { id: 'blog', label: 'Blog' },

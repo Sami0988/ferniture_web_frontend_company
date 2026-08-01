@@ -32,11 +32,10 @@ export default function ContactSection() {
     setStatus('sending');
     await new Promise((resolve) => setTimeout(resolve, 1500));
 
-    const subject = encodeURIComponent(formData.subject);
-    const body = encodeURIComponent(
-      `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
+    const message = encodeURIComponent(
+      `💬 *New Message*\n\n👤 Name: ${formData.name}\n📧 Email: ${formData.email}\n📌 Subject: ${formData.subject}\n\n📝 Message:\n${formData.message}`
     );
-    window.open(`mailto:info@kassahunworkshop.com?subject=${subject}&body=${body}`, '_blank');
+    window.open(`https://t.me/Kidussan27?text=${message}`, '_blank');
 
     setStatus('success');
     createConfetti();
@@ -77,7 +76,8 @@ export default function ContactSection() {
                 </div>
                 <div>
                   <h4 className="font-heading text-xl text-graphite dark:text-white mb-1">{t('callUs')}</h4>
-                  <p className="text-graphite-400 dark:text-aluminum-400">{t('phone')}</p>
+                  <a href={`tel:${t('phone').replace(/\s/g, '')}`} className="text-graphite-400 dark:text-aluminum-400 hover:text-walnut transition-colors">{t('phone')}</a>
+                  <a href={`tel:${t('phone2').replace(/\s/g, '')}`} className="text-graphite-400 dark:text-aluminum-400 hover:text-walnut transition-colors">{t('phone2')}</a>
                 </div>
               </div>
               <div className="flex items-start gap-4">
@@ -86,7 +86,7 @@ export default function ContactSection() {
                 </div>
                 <div>
                   <h4 className="font-heading text-xl text-graphite dark:text-white mb-1">{t('emailUs')}</h4>
-                  <p className="text-graphite-400 dark:text-aluminum-400">{t('email')}</p>
+                  <a href={`mailto:${t('email')}`} className="text-graphite-400 dark:text-aluminum-400 hover:text-walnut transition-colors">{t('email')}</a>
                 </div>
               </div>
               <div className="flex items-start gap-4">
@@ -100,11 +100,12 @@ export default function ContactSection() {
               </div>
               <div className="aspect-video rounded-xl overflow-hidden relative">
                 <iframe
-                  src="https://www.openstreetmap.org/export/embed.html?bbox=38.7580%2C9.0010%2C38.7690%2C9.0100&layer=mapnik&marker=9.0054%2C38.7636"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3940.5!2d38.8314908!3d9.0429928!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x164b91dbb77b66e1%3A0x1c6163279120df7f!2sKotebe%20St.%20Hana%20Mariam%20Church!5e0!3m2!1sen!2set!4v1"
                   className="w-full h-full border-0"
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
-                  title="Kassahun Workshop location on map"
+                  title="Kotebe Hanamaryam Church location on map"
+                  allowFullScreen
                 />
               </div>
             </div>
@@ -155,7 +156,7 @@ export default function ContactSection() {
                 />
                 {errors.message && <p className="text-red-500 text-xs mt-1 flex items-center gap-1"><AlertCircle size={12} />{errors.message}</p>}
               </div>
-              <MagneticButton strength={0.15} type="submit">
+              <MagneticButton strength={0.15}>
                 <button
                   type="submit"
                   disabled={status === 'sending'}

@@ -33,6 +33,7 @@ export default function TestimonialsSection() {
 
   return (
     <section
+      id="testimonials"
       className="section-padding bg-ivory dark:bg-graphite-900"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
@@ -46,7 +47,7 @@ export default function TestimonialsSection() {
           ))}
         </div>
 
-        <div className="relative min-h-[280px] md:min-h-[220px]">
+        <div className="relative min-h-[350px] md:min-h-[300px]">
           {testimonials.map((item, i) => (
             <div
               key={i}
@@ -55,10 +56,10 @@ export default function TestimonialsSection() {
               }`}
               aria-hidden={i !== active}
             >
-              <blockquote className="font-heading text-2xl md:text-3xl lg:text-4xl text-graphite dark:text-white leading-relaxed mb-10 italic">
+              <blockquote className="font-heading text-2xl md:text-3xl lg:text-4xl text-graphite dark:text-white leading-relaxed mb-8 italic">
                 &ldquo;{item.text}&rdquo;
               </blockquote>
-              <div className="mb-2">
+              <div className="pb-4">
                 <p className="font-heading text-lg text-graphite dark:text-white">{item.name}</p>
                 <p className="text-sm text-graphite-400 dark:text-aluminum-400">{item.role}, {item.location}</p>
               </div>

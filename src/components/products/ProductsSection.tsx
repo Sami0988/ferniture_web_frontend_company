@@ -5,22 +5,15 @@ import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 import { Reveal, StaggerContainer, StaggerItem } from '@/components/ui/Reveal';
 import TiltCard from '@/components/ui/TiltCard';
-
-const products = [
-  { id: 1, nameKey: 'Walnut Dining Table', category: 'Furniture', material: 'Wood', price: 'ETB 85,000', image: '/image/PXL_20241219_104255306.jpg' },
-  { id: 2, nameKey: 'Aluminum Sliding Window', category: 'Aluminum', material: 'Aluminum', price: 'ETB 35,000', image: '/image/PXL_20250426_180358812.jpg' },
-  { id: 3, nameKey: 'Modern Living Room Set', category: 'Interior', material: 'Mixed', price: 'ETB 150,000', image: '/image/PXL_20250621_125518743.jpg' },
-  { id: 4, nameKey: 'Glass Railing System', category: 'Aluminum', material: 'Aluminum/Glass', price: 'ETB 95,000', image: '/image/PXL_20250910_162533336.jpg' },
-  { id: 5, nameKey: 'Custom Kitchen Cabinets', category: 'Furniture', material: 'Wood', price: 'ETB 180,000', image: '/image/PXL_20250920_142225099.jpg' },
-  { id: 6, nameKey: 'Office Partition Walls', category: 'Aluminum', material: 'Aluminum', price: 'ETB 45,000', image: '/image/PXL_20250920_142238079.jpg' },
-  { id: 7, nameKey: 'Executive Desk', category: 'Furniture', material: 'Wood', price: 'ETB 75,000', image: '/image/PXL_20250920_142255582.jpg' },
-  { id: 8, nameKey: 'Bedroom Wardrobe', category: 'Furniture', material: 'Wood', price: 'ETB 90,000', image: '/image/PXL_20250920_142302869.jpg' },
-];
+import { useGetProductsQuery } from '@/lib/api/productsApi';
+import { ImageIcon } from 'lucide-react';
 
 export default function ProductsSection() {
   const t = useTranslations('products');
   const categories = t.raw('categories');
   const [activeFilter, setActiveFilter] = useState('All');
+  const [imageErrors, setImageErrors] = useState<Record<string, boolean>>({});
+  const { data: products = [], isLoading, error } = useGetProductsQuery();
 
   const filteredProducts = activeFilter === 'All'
     ? products
@@ -48,24 +41,47 @@ export default function ProductsSection() {
             </button>
           ))}
         </div>
-        <StaggerContainer className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {filteredProducts.map((p) => (
-            <StaggerItem key={p.id}>
-              <TiltCard className="h-full">
-                <div className="group bg-white dark:bg-graphite-800 rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 h-full">
-                  <div className="aspect-square relative overflow-hidden">
-                    <Image src={p.image} alt={p.nameKey} fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
+        {isLoading ? (
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[1, 2, 3, 4].map((i) => (
+              <div key={i} className="skeleton h-80 rounded-xl" />
+            ))}
+          </div>
+        ) : error ? (
+          <p className="text-center text-graphite-400 dark:text-aluminum-400 mt-8">No products found</p>
+        ) : (
+          <StaggerContainer className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {filteredProducts.map((p) => (
+              <StaggerItem key={p.id}>
+                <TiltCard className="h-full">
+                  <div className="group bg-white dark:bg-graphite-800 rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 h-full">
+                    <div className="aspect-square relative overflow-hidden bg-aluminum-100 dark:bg-graphite-700">
+                      {imageErrors[p.id] ? (
+                        <div className="absolute inset-0 flex items-center justify-center">
+                          <ImageIcon className="text-aluminum-400 dark:text-aluminum-500" size={48} />
+                        </div>
+                      ) : (
+                        <Image 
+                          src={p.image} 
+                          alt={p.name} 
+                          fill 
+                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw" 
+                          className="object-cover group-hover:scale-105 transition-transform duration-500"
+                          onError={() => setImageErrors(prev => ({ ...prev, [p.id]: true }))}
+                        />
+                      )}
+                    </div>
+                    <div className="p-4">
+                      <p className="service-pillar-label text-aluminum-500 text-[10px] mb-1">{p.category}</p>
+                      <h4 className="font-heading text-lg text-graphite dark:text-white mb-1">{p.name}</h4>
+                      <p className="text-sm text-graphite-400 dark:text-aluminum-400">{p.material} · ETB {p.price.toLocaleString()}</p>
+                    </div>
                   </div>
-                  <div className="p-4">
-                    <p className="service-pillar-label text-aluminum-500 text-[10px] mb-1">{p.category}</p>
-                    <h4 className="font-heading text-lg text-graphite dark:text-white mb-1">{p.nameKey}</h4>
-                    <p className="text-sm text-graphite-400 dark:text-aluminum-400">{p.material} · {p.price}</p>
-                  </div>
-                </div>
-              </TiltCard>
-            </StaggerItem>
-          ))}
-        </StaggerContainer>
+                </TiltCard>
+              </StaggerItem>
+            ))}
+          </StaggerContainer>
+        )}
         {filteredProducts.length === 0 && (
           <p className="text-center text-graphite-400 dark:text-aluminum-400 mt-8">No products found in this category.</p>
         )}

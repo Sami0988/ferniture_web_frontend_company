@@ -18,11 +18,12 @@ export default function AboutSection() {
                 src="/image/PXL_20240827_133457583.jpg"
                 alt="Craftsman working on wood"
                 fill
+                sizes="(max-width: 768px) 100vw, 50vw"
                 className="object-cover"
               />
             </div>
             <div className="absolute -bottom-6 -right-6 bg-walnut text-white px-6 py-4 text-center">
-              <AnimatedCounter target={12} className="font-heading text-3xl font-bold" />
+              <AnimatedCounter target={20} className="font-heading text-3xl font-bold" />
               <div className="text-xs uppercase tracking-wider text-aluminum-300">Years of<br/>Craft</div>
             </div>
           </div>
@@ -44,7 +45,7 @@ export default function AboutSection() {
             <div className="border-t border-aluminum-200 dark:border-graphite-600 pt-8">
               <div className="grid grid-cols-2 gap-6">
                 {[
-                  { number: 14, suffix: '+', label: t('stat1Label') },
+                  { number: 20, suffix: '+', label: t('stat1Label') },
                   { number: 500, suffix: '+', label: t('stat2Label') },
                   { number: 50, suffix: '+', label: t('stat3Label') },
                   { number: 4, suffix: '', label: t('stat4Label') },

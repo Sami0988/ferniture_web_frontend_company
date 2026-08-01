@@ -40,11 +40,10 @@ export default function QuoteSection() {
     setStatus('sending');
     await new Promise((resolve) => setTimeout(resolve, 1500));
 
-    const subject = encodeURIComponent(`Quote Request - ${formData.service}`);
-    const body = encodeURIComponent(
-      `Name: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone}\nService: ${formData.service}\n\nProject Details:\n${formData.project}`
+    const message = encodeURIComponent(
+      `📋 *Quote Request*\n\n👤 Name: ${formData.name}\n📧 Email: ${formData.email}\n📞 Phone: ${formData.phone}\n🔧 Service: ${formData.service}\n\n📝 Project Details:\n${formData.project}`
     );
-    window.open(`mailto:info@kassahunworkshop.com?subject=${subject}&body=${body}`, '_blank');
+    window.open(`https://t.me/Kidussan27?text=${message}`, '_blank');
 
     setStatus('success');
     createConfetti();
@@ -61,7 +60,7 @@ export default function QuoteSection() {
   return (
     <section id="quote" className="section-padding bg-walnut dark:bg-walnut-700 relative overflow-hidden">
       <div className="absolute inset-0 opacity-10">
-        <Image src="/image/PXL_20240827_133457583.jpg" alt="" fill className="object-cover" />
+        <Image src="/image/PXL_20240827_133457583.jpg" alt="" fill sizes="100vw" className="object-cover" />
       </div>
       <div className="max-w-4xl mx-auto relative z-10">
         <Reveal>
@@ -116,11 +115,11 @@ export default function QuoteSection() {
                   onChange={handleChange}
                   className={`w-full px-4 py-3 bg-white/10 border rounded-lg focus:outline-none focus:border-gold transition-colors ${errors.service ? 'border-red-400 text-white/50' : 'border-white/20 text-white/70'}`}
                 >
-                  <option value="">{t('serviceLabel')}</option>
-                  <option value="furniture">{t('serviceOptions.furniture')}</option>
-                  <option value="aluminum">{t('serviceOptions.aluminum')}</option>
-                  <option value="interior">{t('serviceOptions.interior')}</option>
-                  <option value="consulting">{t('serviceOptions.consulting')}</option>
+                  <option value="" className="bg-graphite text-white">{t('serviceLabel')}</option>
+                  <option value="furniture" className="bg-graphite text-white">{t('serviceOptions.furniture')}</option>
+                  <option value="aluminum" className="bg-graphite text-white">{t('serviceOptions.aluminum')}</option>
+                  <option value="interior" className="bg-graphite text-white">{t('serviceOptions.interior')}</option>
+                  <option value="consulting" className="bg-graphite text-white">{t('serviceOptions.consulting')}</option>
                 </select>
                 {errors.service && <p className="text-red-300 text-xs mt-1 flex items-center gap-1"><AlertCircle size={12} />{errors.service}</p>}
               </div>
@@ -136,7 +135,7 @@ export default function QuoteSection() {
               />
               {errors.project && <p className="text-red-300 text-xs mt-1 flex items-center gap-1"><AlertCircle size={12} />{errors.project}</p>}
             </div>
-            <MagneticButton strength={0.15} type="submit">
+            <MagneticButton strength={0.15}>
               <button
                 type="submit"
                 disabled={status === 'sending'}
