@@ -32,7 +32,7 @@ export default function MaterialsSection() {
           <p className="text-center text-graphite-400 dark:text-aluminum-400 mt-8">No materials found</p>
         ) : (
           <StaggerContainer className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
-            {materials.map((m) => (
+            {materials?.map((m) => (
               <StaggerItem key={m.id}>
                 <div className="material-swatch aspect-square relative group bg-aluminum-100 dark:bg-graphite-700">
                   {!m.image || imageErrors[m.id] ? (
