@@ -78,6 +78,7 @@ export default async function LocaleLayout({
   return (
     <html lang={locale} suppressHydrationWarning className={`${playfair.variable} ${inter.variable}`}>
       <head>
+        <link rel="icon" href="/image/photo_5944895518842490494_x%20(1).jpg" type="image/jpeg" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
