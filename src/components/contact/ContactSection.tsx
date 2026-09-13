@@ -6,10 +6,12 @@ import { Reveal } from '@/components/ui/Reveal';
 import MagneticButton from '@/components/ui/MagneticButton';
 import useConfetti from '@/components/ui/useConfetti';
 import { Send, CheckCircle, AlertCircle, MapPin, Phone, Mail, Clock } from 'lucide-react';
+import { useGetContactInfoQuery } from '@/lib/api/baseApi';
 
 export default function ContactSection() {
   const t = useTranslations('contact');
   const createConfetti = useConfetti();
+  const { data: contactInfo } = useGetContactInfoQuery();
   const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' });
   const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -49,6 +51,14 @@ export default function ContactSection() {
     if (errors[name]) setErrors((prev) => ({ ...prev, [name]: '' }));
   };
 
+  const address = contactInfo?.address || t('address');
+  const phone1 = contactInfo?.phone1 || t('phone');
+  const phone2 = contactInfo?.phone2 || t('phone2');
+  const email = contactInfo?.email || t('email');
+  const weekdayHours = contactInfo?.weekdayHours || '';
+  const saturdayHours = contactInfo?.saturdayHours || '';
+  const mapUrl = contactInfo?.mapUrl || 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3940.5!2d38.8314908!3d9.0429928!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x164b91dbb77b66e1%3A0x1c6163279120df7f!2sKotebe%20St.%20Hana%20Mariam%20Church!5e0!3m2!1sen!2set!4v1';
+
   return (
     <section id="contact" className="section-padding bg-ivory dark:bg-graphite-900">
       <div className="max-w-7xl mx-auto">
@@ -67,7 +77,7 @@ export default function ContactSection() {
                 </div>
                 <div>
                   <h3 className="font-heading text-xl text-graphite dark:text-white mb-1">{t('visitUs')}</h3>
-                  <p className="text-graphite-400 dark:text-aluminum-400">{t('address')}</p>
+                  <p className="text-graphite-400 dark:text-aluminum-400">{address}</p>
                 </div>
               </div>
               <div className="flex items-start gap-4">
@@ -76,8 +86,8 @@ export default function ContactSection() {
                 </div>
                 <div>
                   <h3 className="font-heading text-xl text-graphite dark:text-white mb-1">{t('callUs')}</h3>
-                  <a href={`tel:${t('phone').replace(/\s/g, '')}`} className="text-graphite-400 dark:text-aluminum-400 hover:text-walnut transition-colors">{t('phone')}</a>
-                  <a href={`tel:${t('phone2').replace(/\s/g, '')}`} className="text-graphite-400 dark:text-aluminum-400 hover:text-walnut transition-colors">{t('phone2')}</a>
+                  <a href={`tel:${phone1.replace(/\s/g, '')}`} className="block text-graphite-400 dark:text-aluminum-400 hover:text-walnut transition-colors">{phone1}</a>
+                  {phone2 && <a href={`tel:${phone2.replace(/\s/g, '')}`} className="block text-graphite-400 dark:text-aluminum-400 hover:text-walnut transition-colors">{phone2}</a>}
                 </div>
               </div>
               <div className="flex items-start gap-4">
@@ -86,7 +96,7 @@ export default function ContactSection() {
                 </div>
                 <div>
                   <h3 className="font-heading text-xl text-graphite dark:text-white mb-1">{t('emailUs')}</h3>
-                  <a href={`mailto:${t('email')}`} className="text-graphite-400 dark:text-aluminum-400 hover:text-walnut transition-colors">{t('email')}</a>
+                  <a href={`mailto:${email}`} className="text-graphite-400 dark:text-aluminum-400 hover:text-walnut transition-colors">{email}</a>
                 </div>
               </div>
               <div className="flex items-start gap-4">
@@ -95,12 +105,13 @@ export default function ContactSection() {
                 </div>
                 <div>
                   <h3 className="font-heading text-xl text-graphite dark:text-white mb-1">{t('workingHours')}</h3>
-                  <p className="text-graphite-400 dark:text-aluminum-400">{t('hours')}</p>
+                  {weekdayHours && <p className="text-graphite-400 dark:text-aluminum-400">{weekdayHours}</p>}
+                  {saturdayHours && <p className="text-graphite-400 dark:text-aluminum-400">{saturdayHours}</p>}
                 </div>
               </div>
               <div className="aspect-video rounded-xl overflow-hidden relative">
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3940.5!2d38.8314908!3d9.0429928!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x164b91dbb77b66e1%3A0x1c6163279120df7f!2sKotebe%20St.%20Hana%20Mariam%20Church!5e0!3m2!1sen!2set!4v1"
+                  src={mapUrl}
                   className="w-full h-full border-0"
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"

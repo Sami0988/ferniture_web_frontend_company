@@ -3,10 +3,13 @@
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { Reveal, StaggerContainer, StaggerItem } from '@/components/ui/Reveal';
+import { useGetFaqsQuery } from '@/lib/api/baseApi';
 
 export default function FAQSection() {
   const t = useTranslations('faq');
-  const faqs = t.raw('items');
+  const { data: apiFaqs = [] } = useGetFaqsQuery();
+  const staticFaqs = t.raw('items');
+  const faqs = apiFaqs.length > 0 ? apiFaqs : staticFaqs;
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
@@ -20,7 +23,7 @@ export default function FAQSection() {
         </Reveal>
         <StaggerContainer className="space-y-4">
           {faqs.map((faq: any, index: number) => (
-            <StaggerItem key={faq.question}>
+            <StaggerItem key={faq.id || faq.question}>
               <div className="bg-white dark:bg-graphite-700 rounded-xl overflow-hidden">
                 <button
                   onClick={() => setOpenIndex(openIndex === index ? null : index)}

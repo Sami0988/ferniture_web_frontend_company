@@ -3,9 +3,11 @@
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 import AnimatedCounter from '@/components/ui/AnimatedCounter';
+import { useGetAboutPageQuery } from '@/lib/api/baseApi';
 
 export default function AboutSection() {
   const t = useTranslations('about');
+  const { data: about } = useGetAboutPageQuery();
 
   return (
     <section id="about" className="section-padding bg-ivory dark:bg-graphite-900">
@@ -15,15 +17,15 @@ export default function AboutSection() {
             <div className="absolute -top-4 -left-4 w-16 h-16 border-t-2 border-l-2 border-gold z-10" />
             <div className="aspect-[4/5] relative overflow-hidden">
               <Image
-                src="/image/PXL_20240827_133457583.jpg"
-                alt="Craftsman working on wood"
+                src={about?.imageUrl || '/image/PXL_20240827_133457583.jpg'}
+                alt={about?.title || 'Craftsman working on wood'}
                 fill
                 sizes="(max-width: 768px) 100vw, 50vw"
                 className="object-cover"
               />
             </div>
             <div className="absolute -bottom-6 -right-6 bg-walnut text-white px-6 py-4 text-center">
-              <AnimatedCounter target={20} className="font-heading text-3xl font-bold" />
+              <AnimatedCounter target={about?.yearsOfExperience || 20} className="font-heading text-3xl font-bold" />
               <div className="text-xs uppercase tracking-wider text-aluminum-300">Years of<br/>Craft</div>
             </div>
           </div>
@@ -34,21 +36,21 @@ export default function AboutSection() {
               <p className="text-gold text-xs uppercase tracking-[0.2em] font-medium">{t('label')}</p>
             </div>
             <h2 className="font-heading text-4xl md:text-5xl font-bold text-graphite dark:text-white mb-6 leading-tight">
-              {t('title')}
+              {about?.title || t('title')}
             </h2>
             <p className="text-graphite-500 dark:text-aluminum-300 leading-relaxed mb-6">
-              {t('description1')}
+              {about?.description1 || t('description1')}
             </p>
             <p className="text-graphite-500 dark:text-aluminum-300 leading-relaxed mb-8">
-              {t('description2')}
+              {about?.description2 || t('description2')}
             </p>
             <div className="border-t border-aluminum-200 dark:border-graphite-600 pt-8">
               <div className="grid grid-cols-2 gap-6">
                 {[
-                  { number: 20, suffix: '+', label: t('stat1Label') },
-                  { number: 500, suffix: '+', label: t('stat2Label') },
-                  { number: 50, suffix: '+', label: t('stat3Label') },
-                  { number: 4, suffix: '', label: t('stat4Label') },
+                  { number: about?.yearsOfExperience || 20, suffix: '+', label: t('stat1Label') },
+                  { number: about?.projectsCompleted || 500, suffix: '+', label: t('stat2Label') },
+                  { number: about?.countriesServed || 50, suffix: '+', label: t('stat3Label') },
+                  { number: about?.skilledArtisans || 4, suffix: '', label: t('stat4Label') },
                 ].map((stat) => (
                   <div key={stat.label}>
                     <AnimatedCounter

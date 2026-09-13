@@ -3,17 +3,13 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useTranslations } from 'next-intl';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { useGetTestimonialsQuery } from '@/lib/api/baseApi';
 
 export default function TestimonialsSection() {
   const t = useTranslations('testimonials');
+  const { data: testimonials = [] } = useGetTestimonialsQuery();
   const [active, setActive] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
-
-  const testimonials = [
-    { text: t('items.0.text'), name: t('items.0.name'), role: t('items.0.role'), location: t('items.0.location') },
-    { text: t('items.1.text'), name: t('items.1.name'), role: t('items.1.role'), location: t('items.1.location') },
-    { text: t('items.2.text'), name: t('items.2.name'), role: t('items.2.role'), location: t('items.2.location') },
-  ];
 
   const goToPrev = useCallback(() => {
     setActive((prev) => (prev - 1 + testimonials.length) % testimonials.length);
@@ -24,12 +20,14 @@ export default function TestimonialsSection() {
   }, [testimonials.length]);
 
   useEffect(() => {
-    if (isPaused) return;
+    if (isPaused || testimonials.length === 0) return;
     const timer = setInterval(() => {
       setActive((prev) => (prev + 1) % testimonials.length);
     }, 5000);
     return () => clearInterval(timer);
   }, [isPaused, testimonials.length]);
+
+  if (testimonials.length === 0) return null;
 
   return (
     <section
@@ -41,27 +39,27 @@ export default function TestimonialsSection() {
       <div className="max-w-4xl mx-auto text-center">
         <div className="w-10 h-px bg-gold mx-auto mb-4" />
         <p className="text-gold text-xs uppercase tracking-[0.25em] font-medium mb-6">{t('label')}</p>
-        <div className="flex gap-1 justify-center mb-8">
-          {Array.from({ length: 5 }).map((_, i) => (
-            <span key={i} className="text-gold text-xl" aria-hidden="true">★</span>
-          ))}
-        </div>
 
         <div className="relative min-h-[350px] md:min-h-[300px]">
-          {testimonials.map((item, i) => (
+          {testimonials.map((item: any, i: number) => (
             <div
-              key={i}
+              key={item.id}
               className={`absolute inset-0 transition-all duration-700 ease-in-out ${
                 i === active ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 translate-y-4 pointer-events-none'
               }`}
               aria-hidden={i !== active}
             >
+              <div className="flex justify-center mb-6">
+                {Array.from({ length: 5 }).map((_, j) => (
+                  <span key={j} className={`text-xl ${j < Math.floor(Number(item.rating)) ? 'text-gold' : j < Number(item.rating) ? 'text-gold opacity-50' : 'text-aluminum-300 dark:text-graphite-600'}`} aria-hidden="true">★</span>
+                ))}
+              </div>
               <blockquote className="font-heading text-2xl md:text-3xl lg:text-4xl text-graphite dark:text-white leading-relaxed mb-8 italic">
-                &ldquo;{item.text}&rdquo;
+                &ldquo;{item.reviewText}&rdquo;
               </blockquote>
               <div className="pb-4">
-                <p className="font-heading text-lg text-graphite dark:text-white">{item.name}</p>
-                <p className="text-sm text-graphite-400 dark:text-aluminum-400">{item.role}, {item.location}</p>
+                <p className="font-heading text-lg text-graphite dark:text-white">{item.customerName}</p>
+                {item.company && <p className="text-sm text-graphite-400 dark:text-aluminum-400">{item.company}</p>}
               </div>
             </div>
           ))}
@@ -76,7 +74,7 @@ export default function TestimonialsSection() {
             <ChevronLeft size={20} />
           </button>
           <div className="flex gap-2">
-            {testimonials.map((_, i) => (
+            {testimonials.map((_: any, i: number) => (
               <button
                 key={i}
                 onClick={() => setActive(i)}

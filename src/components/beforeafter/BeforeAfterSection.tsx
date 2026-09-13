@@ -4,12 +4,17 @@ import { useState, useRef, useCallback, useEffect } from 'react';
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 import { Reveal } from '@/components/ui/Reveal';
+import { useGetBeforeAfterQuery } from '@/lib/api/baseApi';
 
 export default function BeforeAfterSection() {
   const t = useTranslations('beforeAfter');
+  const { data: items = [] } = useGetBeforeAfterQuery();
+  const [activeIndex, setActiveIndex] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
   const [sliderPos, setSliderPos] = useState(50);
   const [isDragging, setIsDragging] = useState(false);
+
+  const current = items[activeIndex];
 
   const updateSliderPosition = useCallback((clientX: number) => {
     if (!containerRef.current) return;
@@ -32,23 +37,13 @@ export default function BeforeAfterSection() {
 
   useEffect(() => {
     if (!isDragging) return;
-
-    const handleMouseMove = (e: MouseEvent) => {
-      e.preventDefault();
-      updateSliderPosition(e.clientX);
-    };
-
-    const handleTouchMove = (e: TouchEvent) => {
-      updateSliderPosition(e.touches[0].clientX);
-    };
-
+    const handleMouseMove = (e: MouseEvent) => { e.preventDefault(); updateSliderPosition(e.clientX); };
+    const handleTouchMove = (e: TouchEvent) => { updateSliderPosition(e.touches[0].clientX); };
     const handleEnd = () => setIsDragging(false);
-
     window.addEventListener('mousemove', handleMouseMove);
     window.addEventListener('mouseup', handleEnd);
     window.addEventListener('touchmove', handleTouchMove);
     window.addEventListener('touchend', handleEnd);
-
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('mouseup', handleEnd);
@@ -56,6 +51,8 @@ export default function BeforeAfterSection() {
       window.removeEventListener('touchend', handleEnd);
     };
   }, [isDragging, updateSliderPosition]);
+
+  if (items.length === 0) return null;
 
   return (
     <section id="beforeafter" className="section-padding bg-graphite dark:bg-graphite-950">
@@ -84,20 +81,14 @@ export default function BeforeAfterSection() {
             }}
           >
             <div className="absolute inset-0">
-              <Image src="/image/After.jpg" alt="Room after renovation" fill sizes="(max-width: 768px) 100vw, 75vw" className="object-cover" />
+              <Image src={current.afterImage} alt="Room after renovation" fill sizes="(max-width: 768px) 100vw, 75vw" className="object-cover" />
             </div>
-            <div
-              className="absolute inset-0"
-              style={{ clipPath: `inset(0 ${100 - sliderPos}% 0 0)` }}
-            >
-              <Image src="/image/before.jpg" alt="Room before renovation" fill sizes="(max-width: 768px) 100vw, 75vw" className="object-cover" />
+            <div className="absolute inset-0" style={{ clipPath: `inset(0 ${100 - sliderPos}% 0 0)` }}>
+              <Image src={current.beforeImage} alt="Room before renovation" fill sizes="(max-width: 768px) 100vw, 75vw" className="object-cover" />
             </div>
             <div className="absolute top-4 left-4 bg-graphite/70 px-3 py-1 rounded text-white text-sm z-10">{t('before')}</div>
             <div className="absolute top-4 right-4 bg-gold/90 px-3 py-1 rounded text-white text-sm z-10">{t('after')}</div>
-            <div
-              className="absolute top-0 bottom-0 w-1 bg-gold z-10 flex items-center justify-center"
-              style={{ left: `${sliderPos}%`, transform: 'translateX(-50%)' }}
-            >
+            <div className="absolute top-0 bottom-0 w-1 bg-gold z-10 flex items-center justify-center" style={{ left: `${sliderPos}%`, transform: 'translateX(-50%)' }}>
               <div className="w-10 h-10 bg-gold rounded-full flex items-center justify-center shadow-lg pointer-events-none">
                 <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16l-4-4m0 0l4-4m-4 4h18M17 8l4 4m0 0l-4 4m4-4H3" />
@@ -105,6 +96,18 @@ export default function BeforeAfterSection() {
               </div>
             </div>
           </div>
+          {items.length > 1 && (
+            <div className="flex justify-center gap-2 mt-6">
+              {items.map((_: any, i: number) => (
+                <button
+                  key={i}
+                  onClick={() => { setActiveIndex(i); setSliderPos(50); }}
+                  className={`w-2.5 h-2.5 rounded-full transition-all ${i === activeIndex ? 'bg-gold scale-110' : 'bg-aluminum-300 dark:bg-graphite-600 hover:bg-aluminum-400'}`}
+                  aria-label={`Go to comparison ${i + 1}`}
+                />
+              ))}
+            </div>
+          )}
         </Reveal>
       </div>
     </section>
