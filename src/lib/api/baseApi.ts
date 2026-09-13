@@ -9,30 +9,37 @@ export const baseApi = createApi({
   endpoints: (builder) => ({
     getAboutPage: builder.query<any, void>({
       query: () => '/website/about',
+      transformResponse: (response: any) => response.data,
       providesTags: ['About'],
     }),
     getServices: builder.query<any[], void>({
       query: () => '/website/services',
+      transformResponse: (response: any) => response.data,
       providesTags: ['Services'],
     }),
     getBlogPosts: builder.query<any[], void>({
       query: () => '/website/blog',
+      transformResponse: (response: any) => response.data,
       providesTags: ['Blog'],
     }),
     getTestimonials: builder.query<any[], void>({
       query: () => '/website/testimonials',
+      transformResponse: (response: any) => response.data?.data ?? response.data ?? [],
       providesTags: ['Testimonials'],
     }),
     getBeforeAfter: builder.query<any[], void>({
       query: () => '/website/before-after',
+      transformResponse: (response: any) => response.data,
       providesTags: ['BeforeAfter'],
     }),
     getContactInfo: builder.query<any, void>({
       query: () => '/website/contact-info',
+      transformResponse: (response: any) => response.data,
       providesTags: ['ContactInfo'],
     }),
     getFaqs: builder.query<any[], void>({
       query: () => '/website/faqs',
+      transformResponse: (response: any) => response.data,
       providesTags: ['FAQ'],
     }),
   }),
