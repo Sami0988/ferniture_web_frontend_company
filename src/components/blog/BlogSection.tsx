@@ -43,7 +43,7 @@ export default function BlogSection() {
                   </div>
                   <h3 className="font-heading text-xl text-graphite dark:text-white mb-3 group-hover:text-gold transition-colors">{post.title}</h3>
                   <p className="text-graphite-400 dark:text-aluminum-400 text-sm leading-relaxed mb-4 flex-1">{post.excerpt}</p>
-                  <Link href={`/blog`} className="text-gold font-medium text-sm flex items-center gap-1 group-hover:gap-2 transition-all" aria-label={`Read more about ${post.title}`}>
+                  <Link href={`/blog/${post.slug}`} className="text-gold font-medium text-sm flex items-center gap-1 group-hover:gap-2 transition-all" aria-label={`Read more about ${post.title}`}>
                     Read More <ArrowRight size={14} />
                   </Link>
                 </div>

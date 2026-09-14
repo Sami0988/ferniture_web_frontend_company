@@ -53,6 +53,11 @@ export const baseApi = createApi({
       transformResponse: (response: any) => response.data,
       providesTags: ['FAQ'],
     }),
+    getBlogPostBySlug: builder.query<any, { slug: string; locale?: string }>({
+      query: ({ slug, locale }) => `/website/blog/${slug}${locale ? `?locale=${locale}` : ''}`,
+      transformResponse: (response: any) => response.data,
+      providesTags: (_result, _error, { slug }) => [{ type: 'Blog', id: slug }],
+    }),
   }),
 });
 
@@ -60,6 +65,7 @@ export const {
   useGetAboutPageQuery,
   useGetServicesQuery,
   useGetBlogPostsQuery,
+  useGetBlogPostBySlugQuery,
   useGetTestimonialsQuery,
   useGetFeaturedTestimonialsQuery,
   useGetBeforeAfterQuery,
