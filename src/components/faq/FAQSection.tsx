@@ -1,13 +1,14 @@
 'use client';
 
 import { useState } from 'react';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { Reveal, StaggerContainer, StaggerItem } from '@/components/ui/Reveal';
 import { useGetFaqsQuery } from '@/lib/api/baseApi';
 
 export default function FAQSection() {
   const t = useTranslations('faq');
-  const { data: apiFaqs = [] } = useGetFaqsQuery();
+  const locale = useLocale();
+  const { data: apiFaqs = [] } = useGetFaqsQuery(locale);
   const staticFaqs = t.raw('items');
   const faqs = apiFaqs.length > 0 ? apiFaqs : staticFaqs;
   const [openIndex, setOpenIndex] = useState<number | null>(null);

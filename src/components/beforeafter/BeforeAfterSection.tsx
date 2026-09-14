@@ -2,13 +2,14 @@
 
 import { useState, useRef, useCallback, useEffect } from 'react';
 import Image from 'next/image';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { Reveal } from '@/components/ui/Reveal';
 import { useGetBeforeAfterQuery } from '@/lib/api/baseApi';
 
 export default function BeforeAfterSection() {
   const t = useTranslations('beforeAfter');
-  const { data: items = [] } = useGetBeforeAfterQuery();
+  const locale = useLocale();
+  const { data: items = [] } = useGetBeforeAfterQuery(locale);
   const [activeIndex, setActiveIndex] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
   const [sliderPos, setSliderPos] = useState(50);

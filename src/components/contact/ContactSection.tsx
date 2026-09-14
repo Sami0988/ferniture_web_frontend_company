@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { Reveal } from '@/components/ui/Reveal';
 import MagneticButton from '@/components/ui/MagneticButton';
 import useConfetti from '@/components/ui/useConfetti';
@@ -10,8 +10,9 @@ import { useGetContactInfoQuery } from '@/lib/api/baseApi';
 
 export default function ContactSection() {
   const t = useTranslations('contact');
+  const locale = useLocale();
   const createConfetti = useConfetti();
-  const { data: contactInfo } = useGetContactInfoQuery();
+  const { data: contactInfo } = useGetContactInfoQuery(locale);
   const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' });
   const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
   const [errors, setErrors] = useState<Record<string, string>>({});

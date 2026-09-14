@@ -1,13 +1,14 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useGetTestimonialsQuery } from '@/lib/api/baseApi';
 
 export default function TestimonialsSection() {
   const t = useTranslations('testimonials');
-  const { data: testimonials = [] } = useGetTestimonialsQuery();
+  const locale = useLocale();
+  const { data: testimonials = [] } = useGetTestimonialsQuery(locale);
   const [active, setActive] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
 

@@ -1,14 +1,15 @@
 'use client';
 
 import Image from 'next/image';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { Link } from '@/i18n/navigation';
 import { Reveal, StaggerContainer, StaggerItem } from '@/components/ui/Reveal';
 import { useGetServicesQuery } from '@/lib/api/baseApi';
 
 export default function ServicesSection() {
   const t = useTranslations('services');
-  const { data: services = [] } = useGetServicesQuery();
+  const locale = useLocale();
+  const { data: services = [] } = useGetServicesQuery(locale);
 
   const colorMap: Record<string, string> = {
     CUSTOM: 'text-walnut',

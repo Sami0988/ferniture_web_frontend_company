@@ -1,13 +1,14 @@
 'use client';
 
 import Image from 'next/image';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import AnimatedCounter from '@/components/ui/AnimatedCounter';
 import { useGetAboutPageQuery } from '@/lib/api/baseApi';
 
 export default function AboutSection() {
   const t = useTranslations('about');
-  const { data: about } = useGetAboutPageQuery();
+  const locale = useLocale();
+  const { data: about } = useGetAboutPageQuery(locale);
 
   return (
     <section id="about" className="section-padding bg-ivory dark:bg-graphite-900">

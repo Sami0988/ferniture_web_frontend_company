@@ -7,38 +7,49 @@ export const baseApi = createApi({
   }),
   tagTypes: ['Products', 'Materials', 'Projects', 'About', 'Services', 'Blog', 'Testimonials', 'BeforeAfter', 'ContactInfo', 'FAQ'],
   endpoints: (builder) => ({
-    getAboutPage: builder.query<any, void>({
-      query: () => '/website/about',
+    getAboutPage: builder.query<any, string>({
+      query: (locale) => `/website/about${locale ? `?locale=${locale}` : ''}`,
       transformResponse: (response: any) => response.data,
       providesTags: ['About'],
     }),
-    getServices: builder.query<any[], void>({
-      query: () => '/website/services',
+    getServices: builder.query<any[], string>({
+      query: (locale) => `/website/services${locale ? `?locale=${locale}` : ''}`,
       transformResponse: (response: any) => response.data,
       providesTags: ['Services'],
     }),
-    getBlogPosts: builder.query<any[], void>({
-      query: () => '/website/blog',
+    getBlogPosts: builder.query<any[], { category?: string; locale?: string }>({
+      query: ({ category, locale }) => {
+        const params = new URLSearchParams();
+        if (category) params.set('category', category);
+        if (locale) params.set('locale', locale);
+        const qs = params.toString();
+        return `/website/blog${qs ? `?${qs}` : ''}`;
+      },
       transformResponse: (response: any) => response.data,
       providesTags: ['Blog'],
     }),
-    getTestimonials: builder.query<any[], void>({
-      query: () => '/website/testimonials',
+    getTestimonials: builder.query<any[], string>({
+      query: (locale) => `/website/testimonials${locale ? `?locale=${locale}` : ''}`,
       transformResponse: (response: any) => response.data?.data ?? response.data ?? [],
       providesTags: ['Testimonials'],
     }),
-    getBeforeAfter: builder.query<any[], void>({
-      query: () => '/website/before-after',
+    getFeaturedTestimonials: builder.query<any[], string>({
+      query: (locale) => `/website/testimonials/featured${locale ? `?locale=${locale}` : ''}`,
+      transformResponse: (response: any) => response.data,
+      providesTags: ['Testimonials'],
+    }),
+    getBeforeAfter: builder.query<any[], string>({
+      query: (locale) => `/website/before-after${locale ? `?locale=${locale}` : ''}`,
       transformResponse: (response: any) => response.data,
       providesTags: ['BeforeAfter'],
     }),
-    getContactInfo: builder.query<any, void>({
-      query: () => '/website/contact-info',
+    getContactInfo: builder.query<any, string>({
+      query: (locale) => `/website/contact-info${locale ? `?locale=${locale}` : ''}`,
       transformResponse: (response: any) => response.data,
       providesTags: ['ContactInfo'],
     }),
-    getFaqs: builder.query<any[], void>({
-      query: () => '/website/faqs',
+    getFaqs: builder.query<any[], string>({
+      query: (locale) => `/website/faqs${locale ? `?locale=${locale}` : ''}`,
       transformResponse: (response: any) => response.data,
       providesTags: ['FAQ'],
     }),
@@ -50,6 +61,7 @@ export const {
   useGetServicesQuery,
   useGetBlogPostsQuery,
   useGetTestimonialsQuery,
+  useGetFeaturedTestimonialsQuery,
   useGetBeforeAfterQuery,
   useGetContactInfoQuery,
   useGetFaqsQuery,

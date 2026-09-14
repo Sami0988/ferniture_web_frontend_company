@@ -1,13 +1,15 @@
 'use client';
 
 import Image from 'next/image';
+import { useLocale } from 'next-intl';
 import { Link } from '@/i18n/navigation';
 import { Reveal, StaggerContainer, StaggerItem } from '@/components/ui/Reveal';
 import { Calendar, ArrowRight } from 'lucide-react';
 import { useGetBlogPostsQuery } from '@/lib/api/baseApi';
 
 export default function BlogSection() {
-  const { data: blogPosts = [] } = useGetBlogPostsQuery();
+  const locale = useLocale();
+  const { data: blogPosts = [] } = useGetBlogPostsQuery({ locale });
 
   const formatDate = (dateStr: string) => {
     const d = new Date(dateStr);
