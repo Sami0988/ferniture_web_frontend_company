@@ -73,7 +73,7 @@ export default function ServicesSection() {
                       ))}
                     </ul>
                   )}
-                  <Link href={`/services/${s.category?.toLowerCase().replace('custom', 'furniture')}`} className="text-gold font-medium text-sm hover:underline">{t('furniture.link')}</Link>
+                  <Link href={`/services/${s.slug}`} className="text-gold font-medium text-sm hover:underline">{t('furniture.link')}</Link>
                 </div>
               </div>
             </StaggerItem>

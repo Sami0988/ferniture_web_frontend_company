@@ -125,7 +125,7 @@ export default function ServicesPage() {
                       </ul>
                     )}
                     <Link
-                      href={`/services/${s.category?.toLowerCase().replace('custom', 'furniture')}`}
+                      href={`/services/${s.slug}`}
                       className="inline-block px-6 py-3 bg-gold hover:bg-gold-600 text-white font-medium rounded-lg transition-colors"
                     >
                       {t('furniture.link')}
