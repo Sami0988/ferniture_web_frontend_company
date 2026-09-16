@@ -62,9 +62,9 @@ export default function ServicesSection() {
                 <div className="p-8">
                   <p className={`service-pillar-label ${colorMap[s.category] || 'text-gold'} mb-3`}>{s.category}</p>
                   <h3 className="font-heading text-2xl text-white mb-4">{s.title}</h3>
-                  <p className="text-aluminum-400 text-sm leading-relaxed mb-6">{s.description}</p>
+                  <p className="text-aluminum-400 text-sm leading-relaxed mb-6 line-clamp-3">{s.description}</p>
                   {Array.isArray(s.bulletPoints) && s.bulletPoints.length > 0 && (
-                    <ul className="space-y-2 mb-8">
+                    <ul className="space-y-2 mb-8 line-clamp-3">
                       {s.bulletPoints.map((f: string) => (
                         <li key={f} className="flex items-center gap-2 text-sm text-aluminum-300">
                           <div className={`w-1.5 h-1.5 rounded-full ${bgColorMap[s.category] || 'bg-gold'}`} />
