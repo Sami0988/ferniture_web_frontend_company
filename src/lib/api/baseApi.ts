@@ -31,6 +31,11 @@ export const baseApi = createApi({
       transformResponse: (response: any) => response.data,
       providesTags: ['Services'],
     }),
+    getServiceBySlug: builder.query<any, { slug: string; locale?: string }>({
+      query: ({ slug, locale }) => `/website/services/${slug}${locale ? `?locale=${locale}` : ''}`,
+      transformResponse: (response: any) => response.data,
+      providesTags: (_result, _error, { slug }) => [{ type: 'Services', id: slug }],
+    }),
     getBlogPosts: builder.query<any[], { category?: string; locale?: string }>({
       query: ({ category, locale }) => {
         const params = new URLSearchParams();
@@ -78,6 +83,7 @@ export const baseApi = createApi({
 export const {
   useGetAboutPageQuery,
   useGetServicesQuery,
+  useGetServiceBySlugQuery,
   useGetBlogPostsQuery,
   useGetBlogPostBySlugQuery,
   useGetTestimonialsQuery,
