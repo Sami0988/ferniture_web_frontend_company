@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import { useParams, useRouter } from 'next/navigation';
-import { useLocale } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { useGetBlogPostBySlugQuery, useGetBlogPostsQuery } from '@/lib/api/baseApi';
 import { Reveal } from '@/components/ui/Reveal';
 import { Calendar, ArrowLeft, Tag } from 'lucide-react';
@@ -12,6 +12,8 @@ export default function BlogDetailPage() {
   const params = useParams();
   const router = useRouter();
   const locale = useLocale();
+  const t = useTranslations('blogPage');
+  const tc = useTranslations('common');
   const slug = params.slug as string;
 
   const { data: post, isLoading, error } = useGetBlogPostBySlugQuery({ slug, locale });
@@ -27,7 +29,7 @@ export default function BlogDetailPage() {
   if (isLoading) {
     return (
       <section className="section-padding bg-ivory dark:bg-graphite-900">
-        <div className="max-w-4xl mx-auto text-center py-20 text-graphite-400">Loading...</div>
+        <div className="max-w-4xl mx-auto text-center py-20 text-graphite-400">{tc('loading')}</div>
       </section>
     );
   }
@@ -36,9 +38,9 @@ export default function BlogDetailPage() {
     return (
       <section className="section-padding bg-ivory dark:bg-graphite-900">
         <div className="max-w-4xl mx-auto text-center py-20">
-          <p className="text-graphite-400 mb-4">Blog post not found.</p>
+          <p className="text-graphite-400 mb-4">{t('notFound')}</p>
           <Link href="/blog" className="text-gold font-medium flex items-center gap-1 justify-center hover:gap-2 transition-all">
-            <ArrowLeft size={14} /> Back to Blog
+            <ArrowLeft size={14} /> {t('backToBlog')}
           </Link>
         </div>
       </section>
@@ -55,7 +57,7 @@ export default function BlogDetailPage() {
               className="text-walnut hover:text-walnut-600 font-medium flex items-center gap-2 transition-colors"
             >
               <ArrowLeft size={16} />
-              Back to Blog
+              {t('backToBlog')}
             </button>
           </div>
         </Reveal>
@@ -90,7 +92,7 @@ export default function BlogDetailPage() {
 
             {post.featureImages && post.featureImages.length > 0 && (
               <div className="mb-12">
-                <h3 className="font-heading text-xl font-semibold text-graphite dark:text-white mb-4">Gallery</h3>
+                <h3 className="font-heading text-xl font-semibold text-graphite dark:text-white mb-4">{t('gallery')}</h3>
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                   {post.featureImages.map((img: string, i: number) => (
                     <div key={i} className="relative aspect-video rounded-lg overflow-hidden">
@@ -106,7 +108,7 @@ export default function BlogDetailPage() {
         {relatedPosts.length > 0 && (
           <Reveal>
             <div className="border-t border-graphite-200 dark:border-graphite-700 pt-12 mt-12">
-              <h3 className="font-heading text-2xl font-bold text-graphite dark:text-white mb-8">More Articles</h3>
+              <h3 className="font-heading text-2xl font-bold text-graphite dark:text-white mb-8">{t('moreArticles')}</h3>
               <div className="grid md:grid-cols-3 gap-6">
                 {relatedPosts.map((related: any) => (
                   <Link key={related.id} href={`/blog/${related.slug}`} className="group block">

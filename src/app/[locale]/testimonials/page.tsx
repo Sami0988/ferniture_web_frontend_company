@@ -1,7 +1,7 @@
 'use client';
 
 import { useRouter } from '@/i18n/navigation';
-import { useLocale } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { useGetTestimonialsQuery } from '@/lib/api/baseApi';
 import { Reveal, StaggerContainer, StaggerItem } from '@/components/ui/Reveal';
 import { ArrowLeft, Star, Quote } from 'lucide-react';
@@ -9,6 +9,9 @@ import { ArrowLeft, Star, Quote } from 'lucide-react';
 export default function TestimonialsPage() {
   const router = useRouter();
   const locale = useLocale();
+  const t = useTranslations('testimonials');
+  const tp = useTranslations('testimonialsPage');
+  const tc = useTranslations('common');
   const { data: testimonials = [], isLoading } = useGetTestimonialsQuery(locale);
 
   const formatDate = (dateStr: string) => {
@@ -26,22 +29,32 @@ export default function TestimonialsPage() {
               className="text-walnut hover:text-walnut-600 font-medium flex items-center gap-2 transition-colors"
             >
               <ArrowLeft size={16} />
-              Back to Home
+              {tc('backToHome')}
             </button>
           </div>
         </Reveal>
         <Reveal>
           <div className="text-center mb-12">
-            <p className="service-pillar-label text-walnut mb-4">TESTIMONIALS</p>
-            <h1 className="font-heading text-4xl md:text-5xl font-bold text-graphite dark:text-white mb-4">What Our Clients Say</h1>
-            <p className="text-graphite-400 dark:text-aluminum-400 max-w-xl mx-auto">Real stories from customers who trusted us with their projects.</p>
+            <p className="service-pillar-label text-walnut mb-4">{t('label')}</p>
+            <h1 className="font-heading text-4xl md:text-5xl font-bold text-graphite dark:text-white mb-4">{t('title')}</h1>
+            <p className="text-graphite-400 dark:text-aluminum-400 max-w-xl mx-auto">{tp('description')}</p>
           </div>
         </Reveal>
 
         {isLoading ? (
-          <div className="text-center py-20 text-graphite-400">Loading...</div>
+          <div className="grid md:grid-cols-2 gap-6">
+            {[1, 2, 3, 4].map((i) => (
+              <div key={i} className="bg-white dark:bg-graphite-800 rounded-xl p-8 shadow-sm h-full">
+                <div className="skeleton h-8 w-8 mb-4" />
+                <div className="skeleton h-4 w-full mb-2" />
+                <div className="skeleton h-4 w-full mb-2" />
+                <div className="skeleton h-4 w-3/4 mb-6" />
+                <div className="skeleton h-4 w-1/3" />
+              </div>
+            ))}
+          </div>
         ) : testimonials.length === 0 ? (
-          <div className="text-center py-20 text-graphite-400">No testimonials yet.</div>
+          <div className="text-center py-20 text-graphite-400">{tp('noTestimonials')}</div>
         ) : (
           <StaggerContainer className="grid md:grid-cols-2 gap-6">
             {testimonials.map((item: any) => (

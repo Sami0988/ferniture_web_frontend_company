@@ -7,6 +7,7 @@ import { useGetAboutPageQuery } from '@/lib/api/baseApi';
 
 export default function AboutSection() {
   const t = useTranslations('about');
+  const ta = useTranslations('aboutSection');
   const locale = useLocale();
   const { data: about } = useGetAboutPageQuery(locale);
 
@@ -27,7 +28,7 @@ export default function AboutSection() {
             </div>
             <div className="absolute -bottom-6 -right-6 bg-walnut text-white px-6 py-4 text-center">
               <AnimatedCounter target={about?.yearsOfExperience || 20} className="font-heading text-3xl font-bold" />
-              <div className="text-xs uppercase tracking-wider text-aluminum-300">Years of<br/>Craft</div>
+              <div className="text-xs uppercase tracking-wider text-aluminum-300">{ta('yearsOfCraft')}</div>
             </div>
           </div>
 
@@ -50,8 +51,8 @@ export default function AboutSection() {
                 {[
                   { number: about?.yearsOfExperience || 20, suffix: '+', label: t('stat1Label') },
                   { number: about?.projectsCompleted || 500, suffix: '+', label: t('stat2Label') },
-                  { number: about?.countriesServed || 50, suffix: '+', label: t('stat3Label') },
-                  { number: about?.skilledArtisans || 4, suffix: '', label: t('stat4Label') },
+                  { number: about?.skilledArtisans || 50, suffix: '+', label: t('stat3Label') },
+                  { number: about?.countriesServed || 4, suffix: '', label: t('stat4Label') },
                 ].map((stat) => (
                   <div key={stat.label}>
                     <AnimatedCounter

@@ -9,6 +9,7 @@ import Image from 'next/image';
 
 export default function Navbar() {
   const t = useTranslations('nav');
+  const tn = useTranslations('navbar');
   const locale = useLocale();
   const router = useRouter();
   const pathname = usePathname();
@@ -55,13 +56,13 @@ export default function Navbar() {
   };
 
   const navLinks = [
-    { label: t('home'), href: '#' },
-    { label: t('about'), href: '#about' },
-    { label: t('services'), href: '#services' },
-    { label: t('gallery'), href: '#gallery' },
-    { label: t('materials'), href: '#materials' },
-    { label: t('blog'), href: '#blog' },
-    { label: t('contact'), href: '#contact' },
+    { label: t('home'), href: '/' },
+    { label: t('about'), href: '/about' },
+    { label: t('services'), href: '/services' },
+    { label: t('gallery'), href: '/gallery' },
+    { label: t('materials'), href: '/materials' },
+    { label: t('blog'), href: '/blog' },
+    { label: t('contact'), href: '/contact' },
   ];
 
   return (
@@ -73,7 +74,7 @@ export default function Navbar() {
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-        <a href="#" className="flex items-center">
+        <a href="/" className="flex items-center">
           <Image
             src="/image/photo_5944895518842490494_x (1).jpg"
             alt="Kassahun Logo"
@@ -105,7 +106,7 @@ export default function Navbar() {
               className={`p-2 rounded-lg transition-colors duration-200 ${
                 scrolled ? 'text-graphite dark:text-aluminum-200 hover:bg-aluminum-100 dark:hover:bg-graphite-700' : 'text-white/80 hover:bg-white/10'
               }`}
-              aria-label="Select Language"
+              aria-label={tn('selectLanguage')}
             >
               <Globe size={18} />
             </button>
@@ -145,7 +146,7 @@ export default function Navbar() {
             className={`p-2 rounded-lg transition-colors duration-200 ${
               scrolled ? 'text-graphite dark:text-aluminum-200 hover:bg-aluminum-100 dark:hover:bg-graphite-700' : 'text-white/80 hover:bg-white/10'
             }`}
-            aria-label={darkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+                aria-label={darkMode ? tn('lightMode') : tn('darkMode')}
           >
             {darkMode ? <Sun size={18} /> : <Moon size={18} />}
           </button>
@@ -166,7 +167,7 @@ export default function Navbar() {
             className={`lg:hidden p-2 rounded-lg transition-colors duration-200 ${
               scrolled ? 'text-graphite dark:text-white' : 'text-white'
             }`}
-            aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
+            aria-label={mobileOpen ? tn('closeMenu') : tn('openMenu')}
           >
             {mobileOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -189,7 +190,7 @@ export default function Navbar() {
 
             {/* Mobile Language Selector */}
             <div className="pt-4 border-t border-aluminum-100 dark:border-graphite-700">
-              <p className="text-xs text-graphite-400 dark:text-aluminum-500 uppercase tracking-wider mb-3">Language</p>
+              <p className="text-xs text-graphite-400 dark:text-aluminum-500 uppercase tracking-wider mb-3">{tn('language')}</p>
               <div className="flex gap-3">
                 <button
                   onClick={() => { switchLocale('en'); setMobileOpen(false); }}
@@ -217,12 +218,12 @@ export default function Navbar() {
             {/* Mobile Theme Toggle */}
             <div className="flex items-center justify-between pt-4 border-t border-aluminum-100 dark:border-graphite-700">
               <span className="text-sm text-graphite dark:text-aluminum-200">
-                {darkMode ? 'Light Mode' : 'Dark Mode'}
+                {darkMode ? tn('lightMode') : tn('darkMode')}
               </span>
               <button
                 onClick={toggleDark}
                 className="p-2 rounded-lg bg-aluminum-100 dark:bg-graphite-700 text-graphite dark:text-aluminum-200"
-                aria-label={darkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+            aria-label={darkMode ? tn('lightMode') : tn('darkMode')}
               >
                 {darkMode ? <Sun size={18} /> : <Moon size={18} />}
               </button>

@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { useLocale } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { Link } from '@/i18n/navigation';
 import { Reveal, StaggerContainer, StaggerItem } from '@/components/ui/Reveal';
 import { Calendar, ArrowRight } from 'lucide-react';
@@ -9,11 +9,12 @@ import { useGetBlogPostsQuery } from '@/lib/api/baseApi';
 
 export default function BlogSection() {
   const locale = useLocale();
+  const t = useTranslations('blogPage');
   const { data: blogPosts = [] } = useGetBlogPostsQuery({ locale });
 
   const formatDate = (dateStr: string) => {
     const d = new Date(dateStr);
-    return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+    return d.toLocaleDateString(locale === 'am' ? 'am-ET' : 'en-US', { month: 'short', day: 'numeric', year: 'numeric' });
   };
 
   return (
@@ -21,9 +22,9 @@ export default function BlogSection() {
       <div className="max-w-7xl mx-auto">
         <Reveal>
           <div className="text-center mb-12">
-            <p className="service-pillar-label text-walnut mb-4">BLOG</p>
-            <h2 className="font-heading text-4xl md:text-5xl font-bold text-graphite dark:text-white mb-4">Latest Insights</h2>
-            <p className="text-graphite-400 dark:text-aluminum-400 max-w-xl mx-auto">Tips, trends, and stories from our workshop.</p>
+            <p className="service-pillar-label text-walnut mb-4">{t('label')}</p>
+            <h2 className="font-heading text-4xl md:text-5xl font-bold text-graphite dark:text-white mb-4">{t('title')}</h2>
+            <p className="text-graphite-400 dark:text-aluminum-400 max-w-xl mx-auto">{t('subtitle')}</p>
           </div>
         </Reveal>
         <StaggerContainer className="grid md:grid-cols-3 gap-8">
@@ -31,7 +32,7 @@ export default function BlogSection() {
             <StaggerItem key={post.id}>
               <article className="group bg-white dark:bg-graphite-800 rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 h-full flex flex-col">
                 <div className="aspect-video relative overflow-hidden">
-                  <Image src={post.coverImage} alt={post.title} fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover group-hover:scale-105 transition-transform duration-500" />
+                  <Image src={post.coverImage || '/image/PXL_20241012_101314116.jpg'} alt={post.title} fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover group-hover:scale-105 transition-transform duration-500" />
                   <div className="absolute top-3 left-3">
                     <span className="px-3 py-1 bg-gold text-white text-xs font-medium rounded-full capitalize">{post.category}</span>
                   </div>
@@ -43,8 +44,8 @@ export default function BlogSection() {
                   </div>
                   <h3 className="font-heading text-xl text-graphite dark:text-white mb-3 group-hover:text-gold transition-colors">{post.title}</h3>
                   <p className="text-graphite-400 dark:text-aluminum-400 text-sm leading-relaxed mb-4 flex-1">{post.excerpt}</p>
-                  <Link href={`/blog/${post.slug}`} className="text-gold font-medium text-sm flex items-center gap-1 group-hover:gap-2 transition-all" aria-label={`Read more about ${post.title}`}>
-                    Read More <ArrowRight size={14} />
+                  <Link href={`/blog/${post.slug}`} className="text-gold font-medium text-sm flex items-center gap-1 group-hover:gap-2 transition-all">
+                    {t('readMore')} <ArrowRight size={14} />
                   </Link>
                 </div>
               </article>

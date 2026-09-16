@@ -9,6 +9,7 @@ import { ImageIcon } from 'lucide-react';
 
 export default function MaterialsSection() {
   const t = useTranslations('materials');
+  const tm = useTranslations('materialsPage');
   const [imageErrors, setImageErrors] = useState<Record<string, boolean>>({});
   const { data: materials, isLoading, error } = useGetMaterialsQuery();
 
@@ -29,7 +30,7 @@ export default function MaterialsSection() {
             ))}
           </div>
         ) : error ? (
-          <p className="text-center text-graphite-400 dark:text-aluminum-400 mt-8">No materials found</p>
+          <p className="text-center text-graphite-400 dark:text-aluminum-400 mt-8">{tm('noMaterials')}</p>
         ) : (
           <StaggerContainer className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
             {materials?.map((m) => (

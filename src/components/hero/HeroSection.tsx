@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 import MagneticButton from '@/components/ui/MagneticButton';
@@ -7,6 +8,7 @@ import { motion, useMotionValue, useSpring } from 'framer-motion';
 
 export default function HeroSection() {
   const t = useTranslations('hero');
+  const [imgError, setImgError] = useState(false);
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
@@ -40,12 +42,13 @@ export default function HeroSection() {
         style={{ x, y }}
       >
         <Image
-          src="/image/PXL_20250920_145418581.jpg"
+          src={imgError ? '/image/PXL_20241012_101314116.jpg' : '/image/PXL_20250920_145418581.jpg'}
           alt="Kassahun workshop interior"
           fill
           className="object-cover scale-[1.15] blur-[2px]"
           priority
           sizes="100vw"
+          onError={() => setImgError(true)}
         />
       </motion.div>
 
@@ -71,7 +74,7 @@ export default function HeroSection() {
             </a>
           </MagneticButton>
           <MagneticButton strength={0.2}>
-            <a href="#gallery" className="px-8 py-4 border-2 border-white hover:bg-white hover:text-graphite text-white font-medium tracking-wider uppercase text-sm rounded transition-all duration-300 inline-block">
+            <a href="/gallery" className="px-8 py-4 border-2 border-white hover:bg-white hover:text-graphite text-white font-medium tracking-wider uppercase text-sm rounded transition-all duration-300 inline-block">
               {t('cta2')}
             </a>
           </MagneticButton>

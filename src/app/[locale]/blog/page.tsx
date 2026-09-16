@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import { useRouter } from '@/i18n/navigation';
 import { Link } from '@/i18n/navigation';
-import { useLocale } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { Reveal, StaggerContainer, StaggerItem } from '@/components/ui/Reveal';
 import { Calendar, ArrowRight } from 'lucide-react';
 import { useGetBlogPostsQuery } from '@/lib/api/baseApi';
@@ -11,6 +11,8 @@ import { useGetBlogPostsQuery } from '@/lib/api/baseApi';
 export default function BlogPage() {
   const router = useRouter();
   const locale = useLocale();
+  const t = useTranslations('blogPage');
+  const tc = useTranslations('common');
   const { data: blogPosts = [], isLoading } = useGetBlogPostsQuery({ locale });
 
   const formatDate = (dateStr: string) => {
@@ -30,22 +32,34 @@ export default function BlogPage() {
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
               </svg>
-              Back to Home
+              {tc('backToHome')}
             </button>
           </div>
         </Reveal>
         <Reveal>
           <div className="text-center mb-12">
-            <p className="service-pillar-label text-walnut mb-4">BLOG</p>
-            <h1 className="font-heading text-4xl md:text-5xl font-bold text-graphite dark:text-white mb-4">Latest Insights</h1>
-            <p className="text-graphite-400 dark:text-aluminum-400 max-w-xl mx-auto">Tips, trends, and stories from our workshop.</p>
+            <p className="service-pillar-label text-walnut mb-4">{t('label')}</p>
+            <h1 className="font-heading text-4xl md:text-5xl font-bold text-graphite dark:text-white mb-4">{t('title')}</h1>
+            <p className="text-graphite-400 dark:text-aluminum-400 max-w-xl mx-auto">{t('subtitle')}</p>
           </div>
         </Reveal>
 
         {isLoading ? (
-          <div className="text-center py-12 text-graphite-400">Loading...</div>
+          <div className="grid md:grid-cols-3 gap-8">
+            {[1, 2, 3].map((i) => (
+              <div key={i} className="bg-white dark:bg-graphite-800 rounded-xl overflow-hidden shadow-sm h-full">
+                <div className="skeleton aspect-video" />
+                <div className="p-6 space-y-3">
+                  <div className="skeleton h-4 w-20" />
+                  <div className="skeleton h-6 w-3/4" />
+                  <div className="skeleton h-4 w-full" />
+                  <div className="skeleton h-4 w-2/3" />
+                </div>
+              </div>
+            ))}
+          </div>
         ) : blogPosts.length === 0 ? (
-          <div className="text-center py-12 text-graphite-400">No blog posts yet.</div>
+          <div className="text-center py-12 text-graphite-400">{t('noPosts')}</div>
         ) : (
           <StaggerContainer className="grid md:grid-cols-3 gap-8">
             {blogPosts.map((post: any) => (
@@ -65,7 +79,7 @@ export default function BlogPage() {
                     <h2 className="font-heading text-xl text-graphite dark:text-white mb-3 group-hover:text-gold transition-colors">{post.title}</h2>
                     <p className="text-graphite-400 dark:text-aluminum-400 text-sm leading-relaxed mb-4 flex-1">{post.excerpt}</p>
                     <Link href={`/blog/${post.slug}`} className="text-gold font-medium text-sm flex items-center gap-1 group-hover:gap-2 transition-all">
-                      Read More <ArrowRight size={14} />
+                      {t('readMore')} <ArrowRight size={14} />
                     </Link>
                   </div>
                 </article>

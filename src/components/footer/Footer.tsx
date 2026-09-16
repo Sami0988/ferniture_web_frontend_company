@@ -5,6 +5,7 @@ import NewsletterForm from './NewsletterForm';
 
 export default function Footer() {
   const t = useTranslations('footer');
+  const tc = useTranslations('common');
   const year = new Date().getFullYear();
 
   return (
@@ -35,7 +36,7 @@ export default function Footer() {
               <h4 className="font-heading text-lg text-white mb-4">{t('servicesTitle')}</h4>
               <ul className="space-y-2 text-sm">
                 {t.raw('services').map((s: string) => (
-                  <li key={s}><a href="#services" className="hover:text-gold transition-colors">{s}</a></li>
+                  <li key={s}><a href="/services" className="hover:text-gold transition-colors">{s}</a></li>
                 ))}
               </ul>
             </div>
@@ -44,7 +45,7 @@ export default function Footer() {
               <h4 className="font-heading text-lg text-white mb-4">{t('quickLinksTitle')}</h4>
               <ul className="space-y-2 text-sm">
                 {t.raw('quickLinks').map((l: string, i: number) => {
-                  const hrefs = ['#about', '#gallery', '#materials', '#faq'];
+                  const hrefs = ['/about', '/gallery', '/materials', '/#faq'];
                   return (
                     <li key={l}><a href={hrefs[i] || '#'} className="hover:text-gold transition-colors">{l}</a></li>
                   );
@@ -61,11 +62,11 @@ export default function Footer() {
 
           <div className="border-t border-graphite-600 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
             <p className="text-sm text-aluminum-300">
-              © {year} Kassahun Wood and Aluminum Work. All rights reserved.
+              {t('copyright', { year })}
             </p>
             <div className="flex gap-6 text-sm text-aluminum-300">
-              <a href="#" className="hover:text-gold transition-colors">{t('privacy')}</a>
-              <a href="#" className="hover:text-gold transition-colors">{t('terms')}</a>
+              <a href="/privacy" className="hover:text-gold transition-colors">{t('privacy')}</a>
+              <a href="/terms" className="hover:text-gold transition-colors">{t('terms')}</a>
             </div>
           </div>
         </div>

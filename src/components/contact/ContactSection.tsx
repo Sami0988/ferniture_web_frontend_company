@@ -6,24 +6,25 @@ import { Reveal } from '@/components/ui/Reveal';
 import MagneticButton from '@/components/ui/MagneticButton';
 import useConfetti from '@/components/ui/useConfetti';
 import { Send, CheckCircle, AlertCircle, MapPin, Phone, Mail, Clock } from 'lucide-react';
-import { useGetContactInfoQuery } from '@/lib/api/baseApi';
+import { useGetContactInfoQuery, useSubmitContactMutation } from '@/lib/api/baseApi';
 
 export default function ContactSection() {
   const t = useTranslations('contact');
   const locale = useLocale();
   const createConfetti = useConfetti();
   const { data: contactInfo } = useGetContactInfoQuery(locale);
+  const [submitContact, { isLoading }] = useSubmitContactMutation();
   const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' });
   const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
   const [errors, setErrors] = useState<Record<string, string>>({});
 
   const validate = () => {
     const newErrors: Record<string, string> = {};
-    if (!formData.name.trim()) newErrors.name = 'Name is required';
-    if (!formData.email.trim()) newErrors.email = 'Email is required';
-    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) newErrors.email = 'Invalid email';
-    if (!formData.subject.trim()) newErrors.subject = 'Subject is required';
-    if (!formData.message.trim()) newErrors.message = 'Message is required';
+    if (!formData.name.trim()) newErrors.name = t('errors.nameRequired');
+    if (!formData.email.trim()) newErrors.email = t('errors.emailRequired');
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) newErrors.email = t('errors.emailInvalid');
+    if (!formData.subject.trim()) newErrors.subject = t('errors.subjectRequired');
+    if (!formData.message.trim()) newErrors.message = t('errors.messageRequired');
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -33,17 +34,22 @@ export default function ContactSection() {
     if (!validate()) return;
 
     setStatus('sending');
-    await new Promise((resolve) => setTimeout(resolve, 1500));
+    try {
+      await submitContact({
+        name: formData.name.trim(),
+        email: formData.email.trim() || undefined,
+        subject: formData.subject.trim() || undefined,
+        message: formData.message.trim(),
+      }).unwrap();
 
-    const message = encodeURIComponent(
-      `💬 *New Message*\n\n👤 Name: ${formData.name}\n📧 Email: ${formData.email}\n📌 Subject: ${formData.subject}\n\n📝 Message:\n${formData.message}`
-    );
-    window.open(`https://t.me/Kidussan27?text=${message}`, '_blank');
-
-    setStatus('success');
-    createConfetti();
-    setFormData({ name: '', email: '', subject: '', message: '' });
-    setTimeout(() => setStatus('idle'), 5000);
+      setStatus('success');
+      createConfetti();
+      setFormData({ name: '', email: '', subject: '', message: '' });
+      setTimeout(() => setStatus('idle'), 5000);
+    } catch (err) {
+      setStatus('error');
+      setTimeout(() => setStatus('idle'), 3000);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -179,9 +185,11 @@ export default function ContactSection() {
                   className="w-full py-4 bg-walnut hover:bg-walnut-600 text-white font-medium rounded-lg transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                 >
                   {status === 'sending' ? (
-                    <>Sending...</>
+                    <>{t('sending')}</>
                   ) : status === 'success' ? (
-                    <><CheckCircle size={18} /> Message Sent!</>
+                    <><CheckCircle size={18} /> {t('success')}</>
+                  ) : status === 'error' ? (
+                    <><AlertCircle size={18} /> {t('error')}</>
                   ) : (
                     <><Send size={18} /> {t('submit')}</>
                   )}

@@ -98,7 +98,7 @@ export default async function LocaleLayout({
               telephone: '+251994437585',
               email: 'kashuntsegayeplc@gmail.com',
               openingHours: 'Mo-Sa 08:00-18:00',
-              priceRange: '$$',
+              priceRange: 'ETB',
               areaServed: {
                 '@type': 'City',
                 name: 'Addis Ababa',

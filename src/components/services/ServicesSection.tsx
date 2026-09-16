@@ -1,15 +1,29 @@
 'use client';
 
+import { useState } from 'react';
 import Image from 'next/image';
 import { useTranslations, useLocale } from 'next-intl';
 import { Link } from '@/i18n/navigation';
 import { Reveal, StaggerContainer, StaggerItem } from '@/components/ui/Reveal';
 import { useGetServicesQuery } from '@/lib/api/baseApi';
 
+const fallbackImages: Record<string, string> = {
+  FURNITURE: '/image/PXL_20241012_101314116.jpg',
+  CUSTOM: '/image/PXL_20241012_101314116.jpg',
+  ALUMINUM: '/image/PXL_20241012_102026855.jpg',
+  INTERIOR: '/image/PXL_20241219_104255306.jpg',
+  GENERAL: '/image/PXL_20241012_101314116.jpg',
+};
+
 export default function ServicesSection() {
   const t = useTranslations('services');
   const locale = useLocale();
   const { data: services = [] } = useGetServicesQuery(locale);
+  const [imgErrors, setImgErrors] = useState<Record<string, boolean>>({});
+
+  const handleImageError = (id: string) => {
+    setImgErrors((prev) => ({ ...prev, [id]: true }));
+  };
 
   const colorMap: Record<string, string> = {
     CUSTOM: 'text-walnut',
@@ -42,7 +56,7 @@ export default function ServicesSection() {
             <StaggerItem key={s.id}>
               <div className="group relative rounded-2xl bg-graphite-800 dark:bg-graphite-800/50 border border-graphite-600 dark:border-graphite-700 hover:border-gold/30 transition-all duration-300 hover:-translate-y-1 h-full overflow-hidden">
                 <div className="aspect-video relative overflow-hidden">
-                  <Image src={s.coverImage} alt={s.title} fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover group-hover:scale-105 transition-transform duration-500" />
+                  <Image src={imgErrors[s.id] ? (fallbackImages[s.category] || '/image/PXL_20241012_101314116.jpg') : (s.coverImage || '/image/PXL_20241012_101314116.jpg')} alt={s.title} fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover group-hover:scale-105 transition-transform duration-500" onError={() => handleImageError(s.id)} />
                   <div className="absolute inset-0 bg-gradient-to-t from-graphite-800 via-transparent to-transparent" />
                 </div>
                 <div className="p-8">
@@ -59,7 +73,7 @@ export default function ServicesSection() {
                       ))}
                     </ul>
                   )}
-                  <Link href="/services" className="text-gold font-medium text-sm hover:underline">{t('furniture.link')}</Link>
+                  <Link href={`/services/${s.category?.toLowerCase().replace('custom', 'furniture')}`} className="text-gold font-medium text-sm hover:underline">{t('furniture.link')}</Link>
                 </div>
               </div>
             </StaggerItem>

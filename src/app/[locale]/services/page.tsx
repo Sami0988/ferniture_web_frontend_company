@@ -2,7 +2,8 @@
 
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
-import { useRouter, usePathname } from '@/i18n/navigation';
+import { useRouter } from '@/i18n/navigation';
+import { Link } from '@/i18n/navigation';
 import { Reveal, StaggerContainer, StaggerItem } from '@/components/ui/Reveal';
 import { services } from '@/lib/data/services';
 
@@ -21,14 +22,6 @@ const bgColorMap: Record<string, string> = {
 export default function ServicesPage() {
   const t = useTranslations('services');
   const router = useRouter();
-  const pathname = usePathname();
-
-  const handleQuoteClick = () => {
-    router.push('/');
-    setTimeout(() => {
-      document.getElementById('quote')?.scrollIntoView({ behavior: 'smooth' });
-    }, 100);
-  };
 
   return (
     <section className="section-padding bg-ivory dark:bg-graphite-900">
@@ -78,12 +71,12 @@ export default function ServicesPage() {
                       </li>
                     ))}
                   </ul>
-                  <button
-                    onClick={handleQuoteClick}
+                  <Link
+                    href={`/services/${s.key}`}
                     className="inline-block px-6 py-3 bg-gold hover:bg-gold-600 text-white font-medium rounded-lg transition-colors"
                   >
                     {t(`${s.key}.link`)}
-                  </button>
+                  </Link>
                 </div>
               </div>
             </StaggerItem>

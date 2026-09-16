@@ -48,7 +48,7 @@ export default function ProductsSection() {
             ))}
           </div>
         ) : error ? (
-          <p className="text-center text-graphite-400 dark:text-aluminum-400 mt-8">No products found</p>
+          <p className="text-center text-graphite-400 dark:text-aluminum-400 mt-8">{t('noProducts')}</p>
         ) : (
           <StaggerContainer className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {filteredProducts.map((p) => (
@@ -83,7 +83,7 @@ export default function ProductsSection() {
           </StaggerContainer>
         )}
         {filteredProducts.length === 0 && (
-          <p className="text-center text-graphite-400 dark:text-aluminum-400 mt-8">No products found in this category.</p>
+          <p className="text-center text-graphite-400 dark:text-aluminum-400 mt-8">{t('noProductsInCategory')}</p>
         )}
       </div>
     </section>

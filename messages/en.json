@@ -10,7 +10,7 @@
     "getQuote": "Get a Quote"
   },
   "hero": {
-    "companyLabel": "EST. 2010 — WOOD & ALUMINUM STUDIO",
+    "companyLabel": "EST. 2000 — WOOD & ALUMINUM STUDIO",
     "titleLine1": "Crafted for the",
     "titleLine2": "Life You Live",
     "subtitle": "Bespoke furniture, timeless design. Every piece tells a story of skill, heritage, and care.",
@@ -20,7 +20,7 @@
   "about": {
     "label": "OUR STORY",
     "title": "Built from the ground up in Addis.",
-    "year": "2010",
+    "year": "2000",
     "description1": "Kassahun Wood and Aluminum Work was founded with a singular vision: to bridge the gap between artisanal woodworking and modern aluminum fabrication. What began as a small workshop has grown into a full-service interior craftsmanship studio, serving homes and businesses across Ethiopia.",
     "description2": "Our team of skilled carpenters, metal fabricators, and interior designers work collaboratively to transform spaces — from custom furniture pieces to complete office fit-outs. We believe that great design lives at the intersection of warmth and precision.",
     "stat1Number": "20+",
@@ -63,44 +63,18 @@
     "label": "CATALOG",
     "title": "Our Products",
     "categories": ["All", "Furniture", "Aluminum", "Interior"],
-    "items": [
-      { "name": "Walnut Dining Table", "category": "Furniture", "material": "Wood", "price": "$$$" },
-      { "name": "Aluminum Sliding Window", "category": "Aluminum", "material": "Aluminum", "price": "$$" },
-      { "name": "Modern Living Room Set", "category": "Interior", "material": "Mixed", "price": "$$$$" },
-      { "name": "Glass Railing System", "category": "Aluminum", "material": "Aluminum/Glass", "price": "$$$" },
-      { "name": "Custom Kitchen Cabinets", "category": "Furniture", "material": "Wood", "price": "$$$$" },
-      { "name": "Office Partition Walls", "category": "Aluminum", "material": "Aluminum", "price": "$$" },
-      { "name": "Executive Desk", "category": "Furniture", "material": "Wood", "price": "$$$" },
-      { "name": "Bedroom Wardrobe", "category": "Furniture", "material": "Wood", "price": "$$$" }
-    ]
+    "noProducts": "No products found",
+    "noProductsInCategory": "No products found in this category."
   },
   "gallery": {
     "label": "PORTFOLIO",
     "title": "Project Gallery",
-    "filters": ["All", "Wood", "Aluminum", "Interior Design"],
-    "projects": [
-      { "title": "Modern Villa Interior", "division": "Interior", "room": "Living Room" },
-      { "title": "Executive Office Fit-out", "division": "Aluminum", "room": "Office" },
-      { "title": "Custom Kitchen Design", "division": "Furniture", "room": "Kitchen" },
-      { "title": "Glass Facade Installation", "division": "Aluminum", "room": "Exterior" },
-      { "title": "Master Bedroom Suite", "division": "Interior", "room": "Bedroom" },
-      { "title": "Restaurant Wood Paneling", "division": "Furniture", "room": "Commercial" }
-    ]
+    "filters": ["All", "Wood", "Aluminum", "Interior Design"]
   },
   "materials": {
     "label": "EXPLORE",
     "title": "Material Library",
-    "subtitle": "Browse our collection of wood species, finishes, and aluminum profiles to inspire your project.",
-    "items": [
-      { "name": "Walnut", "type": "Wood" },
-      { "name": "Oak", "type": "Wood" },
-      { "name": "Mahogany", "type": "Wood" },
-      { "name": "Teak", "type": "Wood" },
-      { "name": "Brushed Silver", "type": "Aluminum" },
-      { "name": "Matte Black", "type": "Aluminum" },
-      { "name": "Champagne Gold", "type": "Aluminum" },
-      { "name": "Bronze", "type": "Aluminum" }
-    ]
+    "subtitle": "Browse our collection of wood species, finishes, and aluminum profiles to inspire your project."
   },
   "beforeAfter": {
     "label": "TRANSFORMATION",
@@ -110,27 +84,7 @@
   },
   "testimonials": {
     "label": "CLIENT TESTIMONIALS",
-    "title": "What Our Clients Say",
-    "items": [
-      {
-        "name": "Selamawit Tesfaye",
-        "role": "Homeowner",
-        "location": "Bole",
-        "text": "We handed Kassahun's team the keys to our entire ground floor. Three months later we have built-ins, a walnut kitchen island, and aluminum sliding doors that changed how the space feels entirely. Extraordinary quality."
-      },
-      {
-        "name": "W/ro Hanna",
-        "role": "Business Owner",
-        "location": "Merkato",
-        "text": "Our office renovation was completed on time and beyond our expectations. The aluminum partitions and glass doors gave our space a completely new identity."
-      },
-      {
-        "name": "Ato Dawit",
-        "role": "Architect",
-        "location": "Arat Kilo",
-        "text": "I regularly recommend Kassahun to my clients. Their attention to detail in both wood and metal work is unmatched in the industry."
-      }
-    ]
+    "title": "What Our Clients Say"
   },
   "quote": {
     "label": "GET STARTED",
@@ -191,7 +145,6 @@
   },
   "footer": {
     "description": "Full-service interior craftsmanship studio — custom furniture, aluminum fabrication, and design consulting.",
-    "socials": ["Facebook", "Instagram", "Telegram"],
     "servicesTitle": "Services",
     "services": ["Custom Furniture", "Aluminum Fabrication", "Interior Design", "Material Consulting"],
     "quickLinksTitle": "Quick Links",
@@ -210,5 +163,141 @@
   "language": {
     "en": "English",
     "am": "Amharic"
+  },
+  "common": {
+    "backToHome": "Back to Home",
+    "loading": "Loading...",
+    "skipToContent": "Skip to main content"
+  },
+  "notFound": {
+    "title": "Page Not Found",
+    "description": "The page you are looking for does not exist or has been moved.",
+    "backHome": "Back to Home"
+  },
+  "servicesDetail": {
+    "notFound": "Service not found.",
+    "backToServices": "Back to Services",
+    "whatWeOffer": "What We Offer",
+    "readyToStart": "Ready to Start Your Project?",
+    "readyDescription": "Tell us about your vision and we'll bring it to life."
+  },
+  "blogPage": {
+    "label": "BLOG",
+    "title": "Latest Insights",
+    "subtitle": "Tips, trends, and stories from our workshop.",
+    "noPosts": "No blog posts yet.",
+    "readMore": "Read More",
+    "backToBlog": "Back to Blog",
+    "gallery": "Gallery",
+    "moreArticles": "More Articles",
+    "notFound": "Blog post not found."
+  },
+  "testimonialsPage": {
+    "description": "Real stories from customers who trusted us with their projects.",
+    "noTestimonials": "No testimonials yet."
+  },
+  "products": {
+    "label": "CATALOG",
+    "title": "Our Products",
+    "categories": ["All", "Furniture", "Aluminum", "Interior"],
+    "noProducts": "No products found",
+    "noProductsInCategory": "No products found in this category."
+  },
+  "galleryPage": {
+    "noProjects": "No projects found.",
+    "imageNotAvailable": "Image not available"
+  },
+  "materialsPage": {
+    "noMaterials": "No materials found."
+  },
+  "quote": {
+    "label": "GET STARTED",
+    "title": "Request a Quote",
+    "subtitle": "Tell us about your project and we'll get back to you within 24 hours.",
+    "namePlaceholder": "Your Name",
+    "emailPlaceholder": "Email Address",
+    "phonePlaceholder": "Phone Number",
+    "serviceLabel": "Service Type",
+    "serviceOptions": {
+      "furniture": "Custom Furniture",
+      "aluminum": "Aluminum Fabrication",
+      "interior": "Interior Design",
+      "consulting": "Consulting"
+    },
+    "projectPlaceholder": "Describe your project...",
+    "submit": "Send Quote Request",
+    "sending": "Sending...",
+    "success": "Request Sent!",
+    "error": "Failed to send. Try again.",
+    "errors": {
+      "nameRequired": "Name is required",
+      "emailRequired": "Email is required",
+      "emailInvalid": "Invalid email",
+      "phoneRequired": "Phone is required",
+      "serviceRequired": "Please select a service",
+      "projectRequired": "Please describe your project"
+    }
+  },
+  "contact": {
+    "label": "CONTACT",
+    "title": "Get In Touch",
+    "visitUs": "Visit Us",
+    "address": "Kotebe Hanamaryam Church, Addis Ababa, Ethiopia",
+    "callUs": "Call Us",
+    "phone": "+251 99 443 7585",
+    "phone2": "+251 911 670 799",
+    "emailUs": "Email Us",
+    "email": "kashuntsegayeplc@gmail.com",
+    "workingHours": "Working Hours",
+    "hours": "Mon – Sat: 8:00 AM – 6:00 PM",
+    "namePlaceholder": "Your Name",
+    "emailPlaceholder": "Email Address",
+    "subjectPlaceholder": "Subject",
+    "messagePlaceholder": "Message",
+    "submit": "Send Message",
+    "sending": "Sending...",
+    "success": "Message Sent!",
+    "error": "Failed to send. Try again.",
+    "errors": {
+      "nameRequired": "Name is required",
+      "emailRequired": "Email is required",
+      "emailInvalid": "Invalid email",
+      "subjectRequired": "Subject is required",
+      "messageRequired": "Message is required"
+    }
+  },
+  "newsletter": {
+    "emailRequired": "Email is required",
+    "emailInvalid": "Invalid email address",
+    "success": "Subscribed successfully!"
+  },
+  "aboutSection": {
+    "yearsOfCraft": "Years of Craft"
+  },
+  "navbar": {
+    "language": "Language",
+    "lightMode": "Light Mode",
+    "darkMode": "Dark Mode",
+    "selectLanguage": "Select Language",
+    "closeMenu": "Close menu",
+    "openMenu": "Open menu"
+  },
+  "whatsapp": {
+    "title": "Chat on WhatsApp",
+    "ariaLabel": "Chat on WhatsApp"
+  },
+  "sectionDots": {
+    "home": "Home",
+    "about": "About",
+    "services": "Services",
+    "gallery": "Gallery",
+    "materials": "Materials",
+    "products": "Products",
+    "beforeAfter": "Before & After",
+    "testimonials": "Testimonials",
+    "quote": "Quote",
+    "faq": "FAQ",
+    "blog": "Blog",
+    "contact": "Contact"
   }
 }

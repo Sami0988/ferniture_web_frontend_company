@@ -7,6 +7,20 @@ export const baseApi = createApi({
   }),
   tagTypes: ['Products', 'Materials', 'Projects', 'About', 'Services', 'Blog', 'Testimonials', 'BeforeAfter', 'ContactInfo', 'FAQ'],
   endpoints: (builder) => ({
+    submitContact: builder.mutation<any, { name: string; email?: string; phone?: string; subject?: string; message: string }>({
+      query: (body) => ({
+        url: '/website/contact',
+        method: 'POST',
+        body,
+      }),
+    }),
+    submitQuote: builder.mutation<any, { name: string; email?: string; phone: string; division?: string; description: string; budgetRange?: string }>({
+      query: (body) => ({
+        url: '/website/quotes',
+        method: 'POST',
+        body,
+      }),
+    }),
     getAboutPage: builder.query<any, string>({
       query: (locale) => `/website/about${locale ? `?locale=${locale}` : ''}`,
       transformResponse: (response: any) => response.data,
@@ -71,4 +85,6 @@ export const {
   useGetBeforeAfterQuery,
   useGetContactInfoQuery,
   useGetFaqsQuery,
+  useSubmitContactMutation,
+  useSubmitQuoteMutation,
 } = baseApi;

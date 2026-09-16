@@ -6,17 +6,18 @@ import { Send, CheckCircle, AlertCircle } from 'lucide-react';
 
 export default function NewsletterForm() {
   const t = useTranslations('footer');
+  const tn = useTranslations('newsletter');
   const [email, setEmail] = useState('');
   const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
   const [error, setError] = useState('');
 
   const validate = () => {
     if (!email.trim()) {
-      setError('Email is required');
+      setError(tn('emailRequired'));
       return false;
     }
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      setError('Invalid email address');
+      setError(tn('emailInvalid'));
       return false;
     }
     setError('');
@@ -28,10 +29,15 @@ export default function NewsletterForm() {
     if (!validate()) return;
 
     setStatus('sending');
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-    setStatus('success');
-    setEmail('');
-    setTimeout(() => setStatus('idle'), 5000);
+    try {
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+      setStatus('success');
+      setEmail('');
+      setTimeout(() => setStatus('idle'), 5000);
+    } catch {
+      setStatus('error');
+      setTimeout(() => setStatus('idle'), 3000);
+    }
   };
 
   return (
@@ -43,19 +49,19 @@ export default function NewsletterForm() {
           onChange={(e) => { setEmail(e.target.value); setError(''); }}
           placeholder={t('newsletterPlaceholder')}
           className={`flex-1 px-4 py-2 bg-graphite-700 border rounded-lg text-white placeholder-aluminum-500 text-sm focus:outline-none focus:border-gold transition-colors ${error ? 'border-red-400' : 'border-graphite-600'}`}
-          aria-label="Email for newsletter"
+          aria-label={t('newsletterPlaceholder')}
         />
         <button
           type="submit"
           disabled={status === 'sending'}
           className="px-4 py-2 bg-gold hover:bg-gold-600 text-white text-sm font-medium rounded-lg transition-colors disabled:opacity-50"
-          aria-label={status === 'success' ? 'Subscribed successfully' : undefined}
+          aria-label={status === 'success' ? tn('success') : undefined}
         >
-          {status === 'sending' ? '...' : status === 'success' ? <><CheckCircle size={16} /> <span className="sr-only">Subscribed</span></> : t('newsletterButton')}
+          {status === 'sending' ? '...' : status === 'success' ? <><CheckCircle size={16} /> <span className="sr-only">{tn('success')}</span></> : t('newsletterButton')}
         </button>
       </div>
       {error && <p className="text-red-400 text-xs flex items-center gap-1"><AlertCircle size={10} />{error}</p>}
-      {status === 'success' && <p className="text-green-400 text-xs flex items-center gap-1"><CheckCircle size={10} />Subscribed successfully!</p>}
+      {status === 'success' && <p className="text-green-400 text-xs flex items-center gap-1"><CheckCircle size={10} />{tn('success')}</p>}
     </form>
   );
 }

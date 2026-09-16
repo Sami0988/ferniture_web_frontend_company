@@ -7,10 +7,12 @@ import { Reveal } from '@/components/ui/Reveal';
 import MagneticButton from '@/components/ui/MagneticButton';
 import useConfetti from '@/components/ui/useConfetti';
 import { Send, CheckCircle, AlertCircle } from 'lucide-react';
+import { useSubmitQuoteMutation } from '@/lib/api/baseApi';
 
 export default function QuoteSection() {
   const t = useTranslations('quote');
   const createConfetti = useConfetti();
+  const [submitQuote] = useSubmitQuoteMutation();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -23,12 +25,12 @@ export default function QuoteSection() {
 
   const validate = () => {
     const newErrors: Record<string, string> = {};
-    if (!formData.name.trim()) newErrors.name = 'Name is required';
-    if (!formData.email.trim()) newErrors.email = 'Email is required';
-    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) newErrors.email = 'Invalid email';
-    if (!formData.phone.trim()) newErrors.phone = 'Phone is required';
-    if (!formData.service) newErrors.service = 'Please select a service';
-    if (!formData.project.trim()) newErrors.project = 'Please describe your project';
+    if (!formData.name.trim()) newErrors.name = t('errors.nameRequired');
+    if (!formData.email.trim()) newErrors.email = t('errors.emailRequired');
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) newErrors.email = t('errors.emailInvalid');
+    if (!formData.phone.trim()) newErrors.phone = t('errors.phoneRequired');
+    if (!formData.service) newErrors.service = t('errors.serviceRequired');
+    if (!formData.project.trim()) newErrors.project = t('errors.projectRequired');
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -38,17 +40,23 @@ export default function QuoteSection() {
     if (!validate()) return;
 
     setStatus('sending');
-    await new Promise((resolve) => setTimeout(resolve, 1500));
+    try {
+      await submitQuote({
+        name: formData.name.trim(),
+        email: formData.email.trim() || undefined,
+        phone: formData.phone.trim(),
+        division: formData.service || undefined,
+        description: formData.project.trim(),
+      }).unwrap();
 
-    const message = encodeURIComponent(
-      `📋 *Quote Request*\n\n👤 Name: ${formData.name}\n📧 Email: ${formData.email}\n📞 Phone: ${formData.phone}\n🔧 Service: ${formData.service}\n\n📝 Project Details:\n${formData.project}`
-    );
-    window.open(`https://t.me/Kidussan27?text=${message}`, '_blank');
-
-    setStatus('success');
-    createConfetti();
-    setFormData({ name: '', email: '', phone: '', service: '', project: '' });
-    setTimeout(() => setStatus('idle'), 5000);
+      setStatus('success');
+      createConfetti();
+      setFormData({ name: '', email: '', phone: '', service: '', project: '' });
+      setTimeout(() => setStatus('idle'), 5000);
+    } catch (err) {
+      setStatus('error');
+      setTimeout(() => setStatus('idle'), 3000);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
@@ -147,9 +155,11 @@ export default function QuoteSection() {
                 className="w-full py-4 bg-gold hover:bg-gold-600 text-white font-medium rounded-lg transition-all duration-300 hover:shadow-lg hover:shadow-gold/20 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
               >
                 {status === 'sending' ? (
-                  <>Sending...</>
+                  <>{t('sending')}</>
                 ) : status === 'success' ? (
-                  <><CheckCircle size={18} /> Request Sent!</>
+                  <><CheckCircle size={18} /> {t('success')}</>
+                ) : status === 'error' ? (
+                  <><AlertCircle size={18} /> {t('error')}</>
                 ) : (
                   <><Send size={18} /> {t('submit')}</>
                 )}
